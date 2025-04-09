@@ -1,0 +1,36 @@
+@charset "UTF-8";
+#imageviewer .popupBox{
+	color:#FFF;
+	width:408px;
+	height:368px;
+	background-color:#333;
+	padding:0px;
+	border:#000 1px solid;
+}
+#imageviewer .popupContent{
+	height:326px;
+	width:400px;
+	margin:4px;
+	border:1px inset #CCCCCC;
+	overflow:auto;
+}
+#imageviewer .popupBar{
+	border: 1px outset #CCC;
+	background-color: #333;
+	background-image:url(../image%20viewer/images/vista_titlebar.png);
+	background-repeat:repeat-x;
+	padding:0px;
+	width:auto;
+	height: 31px;
+}
+#imageviewer .popupTitle{
+	margin-top:8px;
+	margin-left:8px;
+	text-shadow:#000;
+}
+.form_button{
+	cursor:pointer;
+}
+.close_button{
+	float:right; 
+}

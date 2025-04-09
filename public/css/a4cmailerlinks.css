@@ -1,0 +1,60 @@
+
+.aaa A:link {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #335872;
+	text-decoration: underline;
+}
+.aaa A:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #335872;
+	text-decoration: underline;
+}
+.aaa A:active {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #335872;
+	text-decoration: underline;
+}
+.aaa A:hover {
+font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #cc3333;
+	text-decoration: none;
+}
+
+
+
+.aab A:link {
+font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #335872;
+	text-decoration: underline;
+}
+.aab A:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #335872;
+	text-decoration: underline;
+}
+.aab A:active {
+font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #335872;
+	text-decoration: underline;
+}
+.aab A:hover {
+font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #cc3333;
+	text-decoration: none;
+}

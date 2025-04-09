@@ -1,0 +1,8 @@
+.login_form input[type="text"],.login_form input[type="password"]{background: rgba(255, 255, 255, 0.8); border: 1px solid #A7A7A7; border-radius: 6px; font-size: 15px; width:93.6%; height: 30px; padding:5px 10px; margin-bottom:15px; color:#6E6B6B; outline:none;}
+.login_form input[type="text"]::-webkit-input-placeholder,.login_form input[type="password"]::-webkit-input-placeholder{color:#6E6B6B;}
+.login_remeber{font-size:12px; color:#000; font-weight:bold;}
+.login_remeber input[type="checkbox"]{float:left; width:auto; margin-right:10px;}
+.login_btn input[type="submit"]{background: #5082B2; border: 0; border-radius: 6px; height: 40px; font-size: 13px; font-weight: normal; float: left; margin-top: 22px; width:260px; cursor:pointer;}
+.login_btn .forgot_link{background:#fff; border-radius:60%; height:40px; width:40px; text-align:center; line-height:40px; display:inline-block; font-size:16px; margin-top:20px;}
+.login_footer td,.login_footer td a{color:#fff;}
+.login_footer td a:hover{text-decoration:underline;}
