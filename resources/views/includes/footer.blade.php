@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function()
 
 	jQuery('body').on("contextmenu",function(e){
 		//alert('Right click not allowed.');
-		return false;
+		return true;
 	});
 
 jQuery(document).keydown(function(event){

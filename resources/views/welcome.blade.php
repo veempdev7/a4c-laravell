@@ -3,8 +3,18 @@
 @section('content')
 <div id="container">
     <table width="100%" border="0"> <!-- global table -->
-        <tr>
-            <td>
+      
+ <style>
+  ul.FM2_ClientMenu2 li a {
+      /* padding: 17px 25px 0px 25px; */
+     /* padding: 17px 35px 0px 35px; */
+     padding: 28px 15px 0px 29px;
+  }
+  ul.FM2_ClientMenu2 li a span, ul.FM2_ClientMenu2 li a font,ul.FM2_ClientMenu2 li a:hover span, ul.FM2_ClientMenu2 li a:hover font{
+    font-weight: normal!important;
+  }
+</style>
+<td>
                 <table width="100%" border="0" bgcolor="#E1E1E1"> <!-- header elastic table -->
                     <tr>
                         <td>
@@ -21,13 +31,12 @@
                                             <table width="100%" border="0">
                                                 <tr>
                                                     <td width="5%">&nbsp;</td>
-                                                    <td width="25%"><a href="../welcome/welcomepage.php"><img src="../clientconvertgraphics2016/a4conlinelogosim.png" width="200" height="54" /></a></td>
+                                                    <td width="25%"><a href="{{ url('/') }}">
+                                                    <img src="{{ asset('clientconvertgraphics2016/a4conlinelogosim.png') }}" width="200" height="54" alt="Logo">
+                                                    </a></td>
                                                     <td width="5%">&nbsp;</td>
                                                     <td width="48%" align="right" class="emmahelveticaa22whitebold">
-                                                        {{-- <?php
-                                                                echo $title;
-
-                                                                ?> --}}
+                                                    
                                                          Air4casts       
                                                     </td>
                                                     <td width="14%" align="right" class="emmahelveticaa14whitelight">
@@ -94,7 +103,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <table width="100%" height="350" background="../clientconvertgraphics2016/skyplane1000.png">
+                                        <table width="100%" height="350" background="{{ asset('clientconvertgraphics2016/skyplane1000.png') }}">
                                                 <tr>
                                                     <td>&nbsp;</td>
                                                 </tr>
@@ -140,7 +149,7 @@
                                                                     <div id="ClientMenu2_container" class="FM2_ClientMenu2_container" style="display:block">
                                                                         <ul id="ClientMenu2" class="FM2_ClientMenu2">
                                                                             <!-- version=@@buildNumber@@;name=ClientMenu2;baseskin=skin15;colorscheme=dark_blue;type=tabbed; -->
-                                                                            <li> <a href="../welcome/welcomepage.php" target="_self">
+                                                                            <li> <a href="{{ route('airports.home') }}" target="_self">
                                                                                     <font class="leaf">Home</font>
                                                                                 </a></li>
                                                                             <li id="1"> <a target="_self" class="selected">
@@ -229,7 +238,56 @@
                     </tr>
                 </table>
             </td>
-        </tr>
+
+  <script type="text/javascript">registerFlexiCSSMenu("ClientMenu2", {"menuType":"tabbed","effectSub":{"name":"slide","direction":"up","duration":250,"easing":"swing","useFade":true},"effectRest":{"name":"slide","direction":"up","duration":250,"easing":"swing","useFade":true},"effectSubTwo":{"name":"slide","direction":"left","duration":250,"easing":"swing","useFade":true},"options":{"preset":"push","enableTablet":false,"enableMobile":false,"mobileMaxWidth":640,"tabletMaxWidth":1023,"tabletCloseBtnLabel":"Close","tabletCloseBtnEnable":false,"align":"center"},"stickToTop":false,"takeBrowserWidth":true});
+</script>
+</div>
+                      </td>
+                  <td width="2%">&nbsp;</td>
+                  </tr>
+                </table></td>
+            </tr>
+            </table>
+        </div></td>
+      </tr>
+        </table>
+<div class="overlay" id="airport_popUp">
+    <div class="modal">
+      <p class="emmahelveticaa30darkgreylight" id="tabtext"></p>
+      <p class="emmahelveticaa18darkgrey m_bt_15"><span id="nametxt"></span></p>
+      <p class="emmahelveticaa15darkgreylight"><span id="detailstxt"></span>. If you would like to find out more about it, please visit <a href="http://www.air4casts.com" target="_blank">www.air4casts.com</a>, read about it in the Support Center or request a demonstration from our Support Team.</p><br />
+
+      <p class="emmahelveticaa17darkgrey">........................................</p>
+		<div class="clearfix">&nbsp;</div>
+    </div>
+  </div>
+<!--href="../apps/appshome.php"-->
+<!-- pop Up code -->
+<link href="https://maintest17.air4casts.com/popup/overlay.css" rel="stylesheet" type="text/css"/>
+<!--<script src="http://code.jquery.com/jquery-latest.min.js"></script>-->
+<script type="text/javascript" src="https://maintest17.air4casts.com/popup/overlay.js"></script>
+<!-- Popup Message-->
+
+
+<!-- new popup -->
+<div class="overlay" id="chinadomesticModal" style="z-index: 99">
+    <div class="modal">
+      <p class="emmahelveticaa30darkgreylight" id="tabtext">Air4casts ChinaDomestic</p>
+      <p class="emmahelveticaa18darkgreylight m_bt_15">The new <span style="font-weight: bold">ChinaDomestic</span> module has been developed by Air4casts in response to the need for fast and <span style="font-weight: bold">accurate</span> data on <span style="font-weight: bold">up-to-the minute</span> changes to the China domestic travel market.</p><br />
+      <p class="emmahelveticaa16darkgreylight" style="padding: 0px 10px;">This module is available to users of companies who subscribe to it.</p>
+      <p class="emmahelveticaa16darkgreylight" style="padding: 0px 17px;">If you would like to find out more about it, please request a demonstration from our Support Team.</p>
+      <p class="emmahelveticaa17darkgrey">........................................</p>
+		<div class="clearfix">&nbsp;</div>
+    </div>
+  </div>
+<!-- new popup -->
+
+<!-- Airports 1500-->
+<!-- Popup Message-->
+<script type="text/javascript">
+
+</script>
+
         <tr>
             <td>
                 <table width="100%" border="0" bgcolor="#F1F1F1"> <!-- central elastic table -->
@@ -248,10 +306,7 @@
                                                 <tr>
                                                     <td>&nbsp;</td>
                                                     <td align="center" class="emmahelveticaa22darkgreybold">The
-                                                        {{-- <?php
-                                                                echo $title;
-
-                                                                ?> --}} Site from Air4casts
+                                                    Site from Air4casts
                                                     </td>
                                                     <td>&nbsp;</td>
                                                 </tr>
@@ -280,33 +335,17 @@
                                                                             <td align="center" class="emmahelveticaa15darkgreybold">
                                                                                 <table width="100%" border="0">
                                                                                     <tr>
-                                                                                        {{-- <?php
-                                                                                                if ($_SESSION['kt_login_company_id'] == 30) {
-                                                                                                    $url = "../customdown/customdowndgtr.php";
-                                                                                                } else {
-                                                                                                    $url = "";
-                                                                                                }
-
-                                                                                                ?> -- }}
                                                                                         <td width="85%" align="left">
                                                                                             <!-- option to select -->
 
-                                                                                            <a href="<?php echo $redirectUrl ?>"> {{-- <?php echo $title; ?> --}} Custom Downloads</a>
-                                                                                            <!-- option to select -->
-                                                                                            <!-- <a class="selectedcustomdownload" href="../customdown/customdowncartierrichemont.php"> -->
-                                                                                            <!-- href="<?php //echo $url;
-                                                                                                        ?>"> -->
-                                                                                            <!-- <?php
-                                                                                                    // echo $title;
-
-                                                                                                    ?>
-										  Custom Downloads</a> -->
+                                                                                            <a href="">Custom Downloads</a>
+                         
                                                                                         </td>
 
                                                                                         <td width="15%">
 
-                                                                                            <a class="selectedcustomdownload" href=" {{-- <?php echo $url; ?> --}}">
-                                                                                                <img src="../clientconvertgraphics2016/mailerarrowgreysm.png" width="10" height="19" />
+                                                                                            <a class="selectedcustomdownload" href="">
+                                                                                            <img src="{{ asset('clientconvertgraphics2016/mailerarrowgreysm.png') }}" width="10" height="19" />
                                                                                             </a>
                                                                                         </td>
                                                                                     </tr>
@@ -327,7 +366,7 @@
                                                                         <tr>
                                                                             <td align="center">
                                                                                 <a class="selectedcustomdownload" href="">
-                                                                                    <img src="../clientconvertgraphics2016/cutomdownload320.png" width="320" height="139" />
+                                                                                    <img src="{{ asset('clientconvertgraphics2016/cutomdownload320.png') }}" width="320" height="139" />
                                                                                 </a>
                                                                             </td>
                                                                         </tr>
@@ -336,7 +375,7 @@
                                                                         </tr>
                                                                     </table>
                                                                 </td>
-                                                                <td width="8%" align="center" valign="middle"><img src="../clientconvertgraphics2016/homeline280.png" width="11" height="280" /></td>
+                                                                <td width="8%" align="center" valign="middle"><img src="{{ asset('clientconvertgraphics2016/homeline280.png') }}" width="11" height="280" /></td>
                                                                 <td width="51%" valign="top">
                                                                     <table width="100%" border="0">
                                                                         <tr>
@@ -349,37 +388,7 @@
 
                                                                                 <table width="100%" border="0">
 
-                                                                                    {{-- <?php
-                                                                                            $chkcompany = strtolower($_SESSION["kt_login_company"]);
-                                                                                            //echo $chkcompany;die;
-                                                                                            if ($chkcompany == 'coty') {
-
-                                                                                            ?> --}}
-                                                                                    <tr>
-                                                                                        <td width="90%">Airport Infographics</td></a>
-                                                                                        <td width="10%" class="infographics_id">
-                                                                                            <a href="#">
-                                                                                                <img src="../clientconvertgraphics2016/mailerarrowgreysm.png" width="10" height="19" />
-                                                                                            </a>
-                                                                                        </td>
-                                                                                    </tr>
-
-                                                                                    {{-- <?php
-                                                                                            } else {
-
-                                                                                            ?> --}}
-                                                                                    <tr>
-                                                                                        <td width="90%">Airport Infographics</td></a>
-                                                                                        <td width="10%" class="infographics_id">
-                                                                                            <a href="#">
-                                                                                                <img src="../clientconvertgraphics2016/mailerarrowgreysm.png" width="10" height="19" />
-                                                                                            </a>
-                                                                                        </td>
-                                                                                    </tr>
-
-                                                                                    {{-- <?php
-                                                                                            }
-                                                                                            ?> --}}
+                                                                                   
                                                                                 </table>
                                                                             </td>
                                                                             <td>&nbsp;</td>
@@ -388,9 +397,7 @@
                                                                                     <tr>
                                                                                         <td width="70%">Air4casts Data Maps</td>
                                                                                         <td width="30%" class="selectedjmap">
-                                                                                            <a href="#"><img src="../clientconvertgraphics2016/mailerarrowgreysm.png" width="10" height="19" alt="" /></a>
-                                                                                            <!--  <img src="../clientconvertgraphics2016/mailerarrowgreysm.png" width="10" height="19" /> -->
-                                                                                        </td>
+                                                                                            <a href="#"><img src="{{ asset('clientconvertgraphics2016/mailerarrowgreysm.png') }}" width="10" height="19" alt="" /></a>                                                                                        </td>
                                                                                     </tr>
                                                                                 </table>
                                                                             </td>
@@ -414,12 +421,11 @@
                                                                         </tr>
                                                                         <tr>
                                                                             <td align="left" valign="top" class="infographics_id">
-                                                                                <a href="#" class="selectInfo"><img src="../clientconvertgraphics2016/infographicbutton210.png" width="160" height="210" /></a>
+                                                                                <a href="#" class="selectInfo"><img src="{{ asset('clientconvertgraphics2016/infographicbutton210.png') }}" width="160" height="210" /></a>
                                                                             </td>
                                                                             <td>&nbsp;</td>
                                                                             <td align="left" valign="top" class="selectedjmap">
-                                                                                <!-- <img src="../clientconvertgraphics2016/javamap240.png" width="240" height="150" /> -->
-                                                                                <a href="#" id="javamaps"><img src="../clientconvertgraphics2016/javamap240.png" width="240" height="150" alt="" /></a>
+                                                                                <a href="#" id="javamaps"><img src="{{ asset('clientconvertgraphics2016/javamap240.png') }}" width="240" height="150" alt="" /></a>
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
@@ -488,7 +494,7 @@
                                                         </br>
                                                     </td>
                                                     <td>&nbsp;</td>
-                                                    <td style="display: flex;"><a href="javascript:void(0);" class="cls_recovery_popup"><img src="../clientconvertgraphics2016/mailerarrowtransp.png" width="18" height="24" /></a></td>
+                                                    <td style="display: flex;"><a href="javascript:void(0);" class="cls_recovery_popup"><img src="{{ asset('clientconvertgraphics2016/mailerarrowtransp.png') }}" width="18" height="24" /></a></td>
                                                     <td>&nbsp;</td>
                                                 </tr>
                                                 <tr>
@@ -539,7 +545,7 @@
                                                     <td>&nbsp;</td>
                                                     <td class="emmahelveticaa14white"><a href="../airports/airportshome.php" class="emmahelveticaa14white">Want to know which airports, terminals, or countries we cover in our modules? Use this easy link to find out quickly.</a></td>
                                                     <td>&nbsp;</td>
-                                                    <td><a href="../airports/airportshome.php"><img src="../clientconvertgraphics2016/mailerarrowtransp.png" width="18" height="24" /></a></td>
+                                                    <td><a href="../airports/airportshome.php"><img src="{{ asset('clientconvertgraphics2016/mailerarrowtransp.png') }}" width="18" height="24" /></a></td>
                                                     <td>&nbsp;</td>
                                                 </tr>
                                                 <tr>
@@ -672,7 +678,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>&nbsp;</td>
-                                                    <td align="center"><img src="../clientconvertgraphics2016/howitworks800.png" width="600" height="381" /></td>
+                                                    <td align="center"><img src="{{ asset('clientconvertgraphics2016/howitworks800.png') }}" width="600" height="381" /></td>
                                                     <td>&nbsp;</td>
                                                 </tr>
                                             </table>
