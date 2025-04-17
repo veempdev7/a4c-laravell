@@ -1,0 +1,35 @@
+.thebiddownload_cls .emmahelveticaa18darkgreylight {
+    font-family: Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    font-variant: normal;
+    color: #585858;
+}
+
+p.emmahelveticaa16darkgrey.small_text {
+    margin: 10px;
+        margin: 10px 0;
+    font-size: 12px;
+}
+
+p.emmahelveticaa16darkgrey.small_bold {
+    margin: 10px;
+    font-size: 13px;
+    font-weight: 700;
+}
+.thebigdownload_btn{
+  background-color: #5082B2;
+  border: none;
+  color: white;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.m_bt_10{
+  margin: 10px 0px 0px 0px;
+}

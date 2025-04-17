@@ -1,0 +1,182 @@
+body {
+    font: 100% Verdana, Arial, Helvetica, sans-serif;
+    background: #FFFFFF;
+    margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+    padding: 0;
+    text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+    color: #000000;
+  }
+  .oneColFixCtr #container {
+    width: 100%;  /* using 20px less than a full 800px width allows for browser chrome and avoids a horizontal scroll bar */
+    background: #FFFFFF;
+    margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+    border: 0px solid #FFFFFF;
+    text-align: left; /* this overrides the text-align: center on the body element. */
+  }
+  .oneColFixCtr #mainContent {
+    padding: 0px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+  }
+  .KT_field_error{font-size: 11px; color: #f00; margin-bottom: 10px; font-weight: bold;}	
+  
+  
+  /*.form-group .col-sm-6 {
+      width: 50%;
+  }*/
+  .otp_btn {
+      width: 61%;
+      height: 25px;
+      font-size: 12px !important;
+      margin-bottom: 7px !important;
+      font-weight: bold;
+  }
+  
+  
+  .login_btn .form-group {
+      margin-bottom: 7px !important;
+  }
+
+  /*Welcome page */
+  .oneColElsCtr #container {
+    width: 100%;
+    background: #FFFFFF;
+    margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+    border: 0px solid #FFFFFF;
+    text-align: left; /* this overrides the text-align: center on the body element. */
+  
+  }
+  .oneColElsCtr #mainContent {
+    padding: 0px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
+  }
+  /* ul.FM2_ClientMenu2 li a{height:67px !important; padding-top:26px !important; padding-left: 32px !important; padding-right: 32px !important; } */
+  ul.FM2_ClientMenu2 li a{height:67px !important;padding-top:26px !important;}
+  ul.FM2_ClientMenu2 li:hover >a, ul.FM2_ClientMenu2 li.hover >a{height:67px !important;}
+  .modal-footer{border-top:none; text-align:center;}
+  .modal-body{text-align:center;}
+  .cnf_btn{background-color: #002053;
+      border: 1px solid #002053;
+      padding: 22px 35px;
+      border-radius: 15px;}
+  .modal-dialog.welcome_msg {width: 510px;margin: 320px auto 0px;}
+  .cnf_btn:hover, .cnf_btn:focus {
+      color: #fff!important;
+      background-color: #002053!important;
+      border-color: #002053!important;
+  }
+  .modal-body p {
+      padding: 7px 20px;
+  }
+  .modal-body.corona_body p, .modal-body.corona_body ul, .modal-body.corona_body h3{
+    padding: 0px 5px 15px 0px;
+  }
+  span.space {
+      padding: 0px 15px;
+      margin-left: 20px;
+  }
+  .link {
+      padding: 0px;
+      text-decoration: underline;
+      cursor: pointer;
+  }
+  .modal-content{padding: 15px 0px 30px; border-radius: 0px;}
+  .corona_modal_head{
+    width: 405px;
+    margin: 0px auto;
+    text-align: center;
+  }
+  .dotted_end{
+    width: 210px;
+    margin: 20px auto 0px;
+    height: 2px;
+    border-bottom: dotted 2px #999;
+    display: block;
+  }
+  .modal-dialog.corona_msg_dialog{
+    width: 700px;
+  }
+  .corona_msg_dialog .modal-content{
+    overflow-y: scroll;
+    max-height: 915px;
+  }
+  
+  
+  .corona_body{    padding: 0 50px;}
+  
+  .transparentBtn{
+    display: block;
+    position: absolute;
+    top: 303px;
+    left: 286px;
+    background: transparent;
+    width: 159px;
+    height: 32px;
+    border-radius: 20px;
+  }
+  .bookademo:hover{
+    color: #fff!important;
+  }
+  ul.FM2_ClientMenu2 li a {
+    padding: 28px 15px 0px 29px;
+ }
+
+ .img-block img {
+  max-width: 100%;
+  width: 100%;
+}
+.overlay.cls_recovery_popup_modal  .recovery_popup {
+  padding-top: 10px;
+}
+
+.overlay.cls_recovery_popup_modal .modal {
+  width: 100%;
+  max-width: 750px;
+  text-align: justify;
+  height: auto;
+  padding: 30px 50px;
+  overflow-y: auto;
+
+}
+
+.overlay.cls_recovery_popup_modal .modal .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+.overlay.cls_recovery_popup_modal .modal ul .recovery_popup_li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 4px;
+
+}
+
+.overlay.cls_recovery_popup_modal .modal ul .recovery_popup_li::before {
+    content: '-';
+    position: absolute;
+    left: 2px;
+    top: 1px;
+}
+.overlay.cls_recovery_popup_modal .modal p {
+    padding-top: 10px;
+    font-family: Helvetica;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    color: #585858;
+}
+.overlay.cls_recovery_popup_modal .modal ul {
+    list-style: none;
+    padding-top: 10px;
+}
+
+.overlay.cls_recovery_popup_modal .popup_txt_right {
+    padding-top: 15px;
+    padding-right: 0px;
+}
+.overlay.cls_recovery_popup_modal .modal p.emmahelveticaa30darkgreylight {
+    font-weight: 400;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+.overlay.cls_recovery_popup_modal .modal .img-block {
+    padding-left: 0px;
+}

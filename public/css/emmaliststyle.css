@@ -1,0 +1,10 @@
+.emmaliststyletest a:hover {
+	color: #ff0000
+	font-family: Helvetica;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: bold;
+	font-variant: normal;
+	color: #585858;
+	width: 180px;
+}
