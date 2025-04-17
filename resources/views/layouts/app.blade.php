@@ -1,4 +1,3 @@
-<!-- resources/views/layouts/app.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,25 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Air4casts Online Login</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- Bootstrap CSS from CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
-    <!-- Custom CSS -->
+    <!-- Custom CSS files in public/css/ -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css">
-
-    <!-- Additional CSS files -->
     <link href="{{ asset('css/a4cnew.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/a4clinks.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/tablestylegreyhover550.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/tablestylegreyhoversmallnohead.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/tashmeetloginform.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/a4csytle_new.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('css/demo.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('ElasticSlideshow/css/demo.css') }}" rel="stylesheet" type="text/css" />
 
-    <!-- External Styles -->
-    <link href="https://subnews.air4casts.com/style/a4clinks.css" rel="stylesheet" type="text/css" />
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900|Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet" />
+    <!-- External Styles (CDN or external resources) -->
+    <link href="https://subnews.air4casts.com/style/a4clinks.css" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,900|Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
 
     <!-- Menu CSS -->
     <link href="{{ asset('includes/FlexiMenus2/CSSMenu_ClientMenu2.css') }}" rel="stylesheet" type="text/css" />
@@ -40,16 +37,16 @@
 
     <!-- JS Files -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
-    <!-- Custom JS -->
+    <!-- Bootstrap JS from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS files -->
     <script src="{{ asset('js/custom.js') }}"></script>
-    <script src="{{ asset('js/extendjQuery.js') }}"></script>
-    <script src="{{ asset('js/FlexiMenus2/fleximenus2.js') }}"></script>
+    <script src="{{ asset('includes/extendjQuery.js') }}"></script>
+    <script src="{{ asset('includes/FlexiMenus2/fleximenus2.js') }}"></script>
     <script src="{{ asset('includes/DWInfographics/extendDWInfographics.js') }}"></script>
     <script src="{{ asset('includes/DWInfographics/DWInfographics.js') }}"></script>
-
-
 
     @yield('styles')
 </head>

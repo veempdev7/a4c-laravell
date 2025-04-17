@@ -7,6 +7,8 @@ use App\Models\LoginApp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use App\Http\Helpers\OtpHelper;
+
 
 class LoginAppController extends Controller
 {
@@ -36,12 +38,19 @@ class LoginAppController extends Controller
     $request->validate([
         'kt_login_user' => 'required|string',
         'kt_login_password' => 'required|string',
+        'a4c_verify_otp' => 'nullable|string',
     ]);
 
     // Map the form fields to the database columns
     $username = $request->kt_login_user;
     $password = $request->kt_login_password;
+    $otp = $request->a4c_verify_otp;
 
+    if (!OtpHelper::isValidOtp($otp, $username)) {
+        throw ValidationException::withMessages([
+            'a4c_verify_otp' => ['Invalid or expired OTP.'],
+        ]);
+    }
     // Retrieve the user based on the username
     $user = LoginApp::where('login_username', $username)
                     ->where('is_website', 1)

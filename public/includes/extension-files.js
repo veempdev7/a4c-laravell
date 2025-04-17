@@ -1,0 +1,1 @@
+{"DWInfographics":{"ignoreFiles":["font-awesome"],"readonlyFiles":[],"className":"DWInfographics_container"}}

@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginAppController;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AuthenticateLoginApp;
 use App\Http\Controllers\Airport\AirportController;
+use App\Http\Controllers\csvpages\CsvpagesController;
 
 Route::get('login', [LoginAppController::class, 'showLoginForm'])->name('loginapp.show');
 Route::post('login', [LoginAppController::class, 'login'])->name('loginapp.login');
@@ -37,6 +38,7 @@ Route::middleware([AuthenticateLoginApp::class])->prefix('airports')->group(func
     Route::get('actuals-int', [AirportController::class, 'airportsActualsInt'])->name('airports.actuals.int');
     Route::get('actuals-int-lat', [AirportController::class, 'airportsActualsIntLat'])->name('airports.actuals.int.lat');
     Route::get('actuals-tot', [AirportController::class, 'airportsActualsTot'])->name('airports.actuals.tot');
+    Route::get('airportsactualstot', [AirportController::class, 'airportsActualsTottest'])->name('airports.actuals.tottest');
     Route::get('actuals-tot-lat', [AirportController::class, 'airportsActualsTotLat'])->name('airports.actuals.tot.lat');
     Route::get('forecasts', [AirportController::class, 'airportsForecasts'])->name('airports.forecasts');
     Route::get('forecasts-airp', [AirportController::class, 'airportsForecastsAirp'])->name('airports.forecasts.airp');
@@ -77,4 +79,9 @@ Route::middleware([AuthenticateLoginApp::class])->prefix('airports')->group(func
     Route::get('region-forecasts-multi', [AirportController::class, 'regionForecastsMulti'])->name('airports.region.forecasts.multi');
     Route::get('regionlist', [AirportController::class, 'regionList'])->name('airports.regionlist');
     Route::get('bigdownload-alertbox', [AirportController::class, 'theBigDownloadRestrictionAlertbox'])->name('airports.bigdownload.alertbox');
+});
+
+Route::middleware([AuthenticateLoginApp::class])->prefix('csvpages')->group(function () {
+Route::post('airportactuals_lot_csv', [CsvpagesController::class, 'airportactuals_lot_csv'])->name('airportactuals_lot_csv.download');
+
 });
