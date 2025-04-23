@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Air4casts Online Login</title>
+    <title>@yield('title', 'Air4casts Online Login')</title>
 
     <!-- Bootstrap CSS from CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -51,10 +51,8 @@
     @yield('styles')
 </head>
 
-<body class="oneColFixCtr">
-    <div id="app">
+<body class="oneColElsCtr">
         @yield('content')
-    </div>
 
     @yield('footer')
     @yield('scripts')

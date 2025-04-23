@@ -98,6 +98,6 @@ class LoginAppController extends Controller
         // Log out the user
         Auth::guard('loginapp')->logout(); 
         // Redirect to the login page
-        return redirect('/login');
+        return redirect('index');
     }
 }

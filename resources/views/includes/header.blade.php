@@ -129,82 +129,86 @@ ul.FM2_ClientMenu2 li:hover >a, ul.FM2_ClientMenu2 li.hover >a{height: 67px !imp
                                                     <td width="2%">&nbsp;</td>
                                                     <td width="96%" align="center">&nbsp;
 
-                                                        <div id="ClientMenu2_container" class="FM2_ClientMenu2_container" style="display:block">
-                                                            <ul id="ClientMenu2" class="FM2_ClientMenu2">
-                                                                <!-- version=@@buildNumber@@;name=ClientMenu2;baseskin=skin15;colorscheme=dark_blue;type=tabbed; -->
-                                                                <li> <a href="{{ route('airports.home') }}" target="_self">
-                                                                        <font class="leaf">Home</font>
-                                                                    </a></li>
-                                                                <li id="1"> <a target="_self" class="selected">
-                                                                        <font class="leaf">Airports&nbsp;1500</font>
-                                                                    </a></li>
-                                                                <li id="5"> <a target="_self" class="selected">
-                                                                        <font class="leaf">Terminal&nbsp;Forecasts</font>
-                                                                    </a></li>
-                                                                <li id="2"> <a target="_self" class="selected">
-                                                                        <font class="leaf">Nationalities&nbsp;1000</font>
-                                                                    </a></li>
-                                                                <li id="3"> <a target="_self" class="selected">
-                                                                        <font class="leaf">Routes&nbsp;1000</font>
-                                                                    </a></li>
-                                                                <li id="4"> <a target="_self" class="selected">
-                                                                        <font class="leaf">Retail&nbsp;Reach</font>
-                                                                    </a></li>
-                                                                <!-- <li id="5"> <a target="_self" class="selected"><font class="leaf">BrandWeb</font></a></li> -->
-                                                                <!-- <li id="6"> <a target="_self" class="selected"><font class="leaf">Tourism</font></a></li> -->
-                                                                <li style="position: relative;"> <a target="_self" class="selected">
-                                                                        <font class="leaf"><span class="branch">Insights <i class="fa fa-angle-down"></i></span></font>
-                                                                    </a>
-                                                                    <ul class="chinaHover">
-                                                                        <li id='8'><a target="_self" class="selected">
-                                                                                <font class="leaf">ChinaDomestic</font>
+                                                    <div id="ClientMenu2_container" class="FM2_ClientMenu2_container" style="display:block">
+                                                                    <ul id="ClientMenu2" class="FM2_ClientMenu2">
+                                                                        <li> <a href="../welcome/welcomepage.php" target="_self">
+                                                                                <font class="leaf">Home</font>
+                                                                            </a></li>
+                                                                        <li>
+                                                                            <a target="_self" class="selected">
+                                                                                <font class="leaf"><span class="branch">Data&nbsp;Modules &nbsp; <i class="fa fa-angle-down"></i></span></font>
+                                                                            </a>
+                                                                            <div class="mega-menu" aria-hidden="true" role="menu">
+                                                                                <div class="nav-column air_meg_container">
+                                                                                    <div class="nav-column air_mega">
+                                                                                        <h3>Global</h3>
+                                                                                        <ul>
+                                                                                            <li id="1" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                                    <font class="leaf">Airports&nbsp;1500</font>
+                                                                                                </a></li>
+                                                                                            <li id="5" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                                    <font class="leaf">Terminals&nbsp;2000</font>
+                                                                                                </a></li>
+                                                                                            <li id="2" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                                    <font class="leaf">Nationalities&nbsp;1000</font>
+                                                                                                </a></li>
+                                                                                            <li id="3" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                                    <font class="leaf">Routes&nbsp;1000</font>
+                                                                                                </a></li>
+                                                                                            <li id="4" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                                    <font class="leaf">Retail&nbsp;Reach</font>
+                                                                                                </a></li>
+                                                                                            <li id="7" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                                    <font class="leaf">ACI&nbsp;x&nbsp;A4C</font>
+                                                                                                </a></li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                    <div class="nav-column air_mega">
+                                                                                        <h3>Market-Specific</h3>
+                                                                                        <ul>
+                                                                                            <li id="8" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                                    <font class="leaf">ChinaDomestic</font>
+                                                                                                </a></li>
+                                                                                                <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                                        </ul>
+
+                                                                                    </div>
+                                                                                    <div class="nav-column air_mega">
+                                                                                        <h3>Research-Based</h3>
+                                                                                        <ul>
+                                                                                            <li id="6" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                                    <font class="leaf">The Luxury Shopper</font>
+                                                                                                </a></li>
+                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                    <div class="nav-column air_mega">
+                                                                                        <h3>Other</h3>
+                                                                                        <ul>
+                                                                                            <li id="13" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                                    <font class="leaf">Gatewayz</font>
+                                                                                                </a></li>
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li id="9"> <a target="_self" class="selected">
+                                                                                <font class="leaf">Beyond&nbsp;the&nbsp;Airport</font>
+                                                                            </a></li>
+                                                                        <li id="11"> <a target="_self" class="selected">
+                                                                                <font class="leaf">Apps</font>
                                                                             </a></li>
                                                                     </ul>
-                                                                </li>
-                                                                <li id="9"> <a target="_self" class="selected">
-                                                                        <font class="leaf">Apps</font>
-                                                                    </a></li>
-                                                                <!-- <li id="7" class="coronavirus" style="padding-left: 2px!important; padding-right: 2px!important;"><a target="_self" class="selected"><font class="leaf">Coronavirus</font></a></li>  -->
-                                                            </ul>
-                                                            <script type="text/javascript">
-                                                                registerFlexiCSSMenu("ClientMenu2", {
-                                                                    "menuType": "tabbed",
-                                                                    "effectSub": {
-                                                                        "name": "slide",
-                                                                        "direction": "up",
-                                                                        "duration": 250,
-                                                                        "easing": "swing",
-                                                                        "useFade": true
-                                                                    },
-                                                                    "effectRest": {
-                                                                        "name": "slide",
-                                                                        "direction": "up",
-                                                                        "duration": 250,
-                                                                        "easing": "swing",
-                                                                        "useFade": true
-                                                                    },
-                                                                    "effectSubTwo": {
-                                                                        "name": "slide",
-                                                                        "direction": "left",
-                                                                        "duration": 250,
-                                                                        "easing": "swing",
-                                                                        "useFade": true
-                                                                    },
-                                                                    "options": {
-                                                                        "preset": "push",
-                                                                        "enableTablet": false,
-                                                                        "enableMobile": false,
-                                                                        "mobileMaxWidth": 640,
-                                                                        "tabletMaxWidth": 1023,
-                                                                        "tabletCloseBtnLabel": "Close",
-                                                                        "tabletCloseBtnEnable": false,
-                                                                        "align": "center"
-                                                                    },
-                                                                    "stickToTop": false,
-                                                                    "takeBrowserWidth": true
-                                                                });
-                                                            </script>
-                                                        </div>
+                                                                </div>
 
                                                     </td>
                                                     <td width="2%">&nbsp;</td>
@@ -259,7 +263,6 @@ ul.FM2_ClientMenu2 li:hover >a, ul.FM2_ClientMenu2 li.hover >a{height: 67px !imp
 </script>
 </div>
 </td>
-<td width="2%">&nbsp;</td>
 </tr>
 </table>
 </td>

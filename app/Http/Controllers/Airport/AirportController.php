@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Airport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Helpers\CSVHelper;
 
 class AirportController extends Controller
 {
@@ -14,7 +15,9 @@ class AirportController extends Controller
 }
 
 public function actualsForecastMulti() {
-    return view('airports.actuals_forecasts_multi');
+    $airports = DB::connection('db_con_409')->table('lupap')->orderBy('apname', 'asc')->get();
+    return view('airports.actuals_forecasts_multi', compact('airports'));
+    
 }
 
 public function airportActualCountryMultiCompareData() {
@@ -88,15 +91,31 @@ public function airportsActualsIntLat() {
 
 public function airportsActualsTottest(Request $request)
     {
-        $stMonth = DB::connection('db446161675')->table('latestnewmon')
+
+        if ($request->isMethod('post')) {
+            $airport = $request->input('searchAPID');
+            session()->put('sess_aport', $airport);
+            session()->save(); 
+        }
+        if (session()->has('sess_aport')) {
+            $airport = session('sess_aport');
+        } else {
+            $airport = 'AAL';
+        }
+        
+        // Check if the 'csvdownload' query parameter is present and set to 'true'
+        if ($request->has('csvdownload') && $request->input('csvdownload') == 'true') {
+            $airport = $request->input('searchAPID', 'AAL');
+            $csvData = CsvHelper::generateAirportActualsCSVData($airport);
+            return $csvData;
+        }
+        $stMonth = DB::connection('db_con_333')->table('latestnewmon')
     ->where('id', 1)
     ->value('newmon');
-    $KTColParam1_rst_latest_aport = "AAL";
-    if (session()->has("sess_aport")) {
-      $KTColParam1_rst_latest_aport = session()->get("sess_aport");
-    }
+    $KTColParam1_rst_latest_aport = $airport;
     
-    $rst_latest_aport = DB::connection('db446161800')->table('latest_liveinput')
+   // dd(session('sess_aport'),$searchAPID);
+    $rst_latest_aport = DB::connection('db_con_latest')->table('latest_liveinput')
   ->leftJoin('latest_apref', 'latest_apref.code_apref', '=', 'latest_liveinput.jracode')
   ->leftJoin('dlup', 'dlup.id_dlup', '=', 'latest_liveinput.dlup')
   ->select('latest_liveinput.id', 'latest_apref.aport_apref', 'latest_liveinput.jracode', 'dlup.dlup_monthtxt', 'dlup.dlup_year', 'dlup.dlup_fullmontxt', 'latest_liveinput.paxchange', 'latest_liveinput.pax', 'latest_liveinput.dlup')
@@ -104,7 +123,7 @@ public function airportsActualsTottest(Request $request)
   ->first();
     
        // Query 1: $rst_latest_list
-$row_rst_latest_list = DB::connection('db446161800')->table('latest_liveinput')
+$row_rst_latest_list = DB::connection('db_con_latest')->table('latest_liveinput')
 ->leftJoin('latest_apref', 'latest_apref.code_apref', '=', 'latest_liveinput.jracode')
 ->leftJoin('dlup', 'dlup.id_dlup', '=', 'latest_liveinput.dlup')
 ->select('latest_liveinput.id', 'latest_apref.aport_apref', 'latest_liveinput.jracode', 'dlup.dlup_monthtxt', 'dlup.dlup_year', 'dlup.dlup_fullmontxt')
@@ -113,7 +132,7 @@ $row_rst_latest_list = DB::connection('db446161800')->table('latest_liveinput')
 ->get();
 
 // Query 2: $rst_latest_list2
-$row_rst_latest_list2 =  DB::connection('db446161800')->table('latest_liveinput')
+$row_rst_latest_list2 =  DB::connection('db_con_latest')->table('latest_liveinput')
 ->leftJoin('latest_apref', 'latest_apref.code_apref', '=', 'latest_liveinput.jracode')
 ->leftJoin('dlup', 'dlup.id_dlup', '=', 'latest_liveinput.dlup')
 ->select('latest_liveinput.id', 'latest_apref.aport_apref', 'latest_liveinput.jracode', 'dlup.dlup_monthtxt', 'dlup.dlup_year', 'dlup.dlup_fullmontxt')
@@ -122,7 +141,7 @@ $row_rst_latest_list2 =  DB::connection('db446161800')->table('latest_liveinput'
 ->get();
 
 // Query 3: $rst_latest_list3
-$row_rst_latest_list3 = DB::connection('db446161800')->table('latest_liveinput')
+$row_rst_latest_list3 = DB::connection('db_con_latest')->table('latest_liveinput')
 ->leftJoin('latest_apref', 'latest_apref.code_apref', '=', 'latest_liveinput.jracode')
 ->leftJoin('dlup', 'dlup.id_dlup', '=', 'latest_liveinput.dlup')
 ->select('latest_liveinput.id', 'latest_apref.aport_apref', 'latest_liveinput.jracode', 'dlup.dlup_monthtxt', 'dlup.dlup_year', 'dlup.dlup_fullmontxt')
@@ -131,7 +150,7 @@ $row_rst_latest_list3 = DB::connection('db446161800')->table('latest_liveinput')
 ->get();
 
 // Query 4: $rst_latest_min
-$row_rst_latest_min = DB::connection('db446161800')->table('latest_liveinput')
+$row_rst_latest_min = DB::connection('db_con_latest')->table('latest_liveinput')
 ->leftJoin('dlup', 'dlup.id_dlup', '=', 'latest_liveinput.dlup')
 ->select(DB::raw('MIN(latest_liveinput.dlup) AS min_dlup_1'), 'dlup.dlup_fullmontxt', 'dlup.dlup_year')
 ->groupBy('dlup.dlup_fullmontxt', 'dlup.dlup_year')
@@ -139,7 +158,7 @@ $row_rst_latest_min = DB::connection('db446161800')->table('latest_liveinput')
 ->get();
 
 // Query 5: $rst_latest_max
-$row_rst_latest_max = DB::connection('db446161800')->table('latest_liveinput')
+$row_rst_latest_max = DB::connection('db_con_latest')->table('latest_liveinput')
 ->leftJoin('dlup', 'dlup.id_dlup', '=', 'latest_liveinput.dlup')
 ->select('dlup.dlup_fullmontxt', 'dlup.dlup_year', DB::raw('MAX(latest_liveinput.dlup) AS max_dlup_1'))
 ->groupBy('dlup.dlup_fullmontxt', 'dlup.dlup_year')
@@ -147,12 +166,12 @@ $row_rst_latest_max = DB::connection('db446161800')->table('latest_liveinput')
 ->get();
 
 // Query 6: $rst_monthdrop
-$row_rst_monthdrop = DB::connection('db446161800')->table('dlup')
-->where('id_dlup', 196)
+$row_rst_monthdrop = DB::connection('db_con_latest')->table('dlup')
+->where('id_dlup', 397)
 ->get();
 
 // Query 7: $rst_aportdrop
-$rst_aportdrop = DB::connection('db446161800')->table('latest_liveinput')
+$rst_aportdrop = DB::connection('db_con_latest')->table('latest_liveinput')
 ->leftJoin('latest_apref', 'latest_apref.code_apref', '=', 'latest_liveinput.jracode')
 ->leftJoin('dlup', 'dlup.id_dlup', '=', 'latest_liveinput.dlup')
 ->select('latest_liveinput.jracode', DB::raw("CONCAT(latest_apref.aport_apref, '; ', dlup.dlup_monthtxt) AS aportdate"))
@@ -160,7 +179,7 @@ $rst_aportdrop = DB::connection('db446161800')->table('latest_liveinput')
 ->get();
 
 // Query 8: $rst_latest_list_3head
-$row_rst_latest_list_3head = DB::connection('db446161800')->table('latest_liveinput')
+$row_rst_latest_list_3head = DB::connection('db_con_latest')->table('latest_liveinput')
     ->leftJoin('latest_apref', 'latest_apref.code_apref', '=', 'latest_liveinput.jracode')
     ->leftJoin('dlup', 'dlup.id_dlup', '=', 'latest_liveinput.dlup')
     ->select('latest_liveinput.id', 'latest_apref.aport_apref', 'latest_liveinput.jracode', 'dlup.dlup_monthtxt', 'dlup.dlup_year', 'dlup.dlup_fullmontxt')
@@ -169,10 +188,10 @@ $row_rst_latest_list_3head = DB::connection('db446161800')->table('latest_livein
     ->get();
     
   // Get the values of KTColParam1_rst_latest12pax and KTColParam2_rst_latest12pax
-  $jr_code = "ZYI";
+  $jr_code = $airport;
   $last_date = 397;
 
-    $rst_latest12pax = DB::connection('db446161800')
+    $rst_latest12pax = DB::connection('db_con_latest')
     ->table('latest_liveupdate')
     ->leftJoin('dlup', 'dlup.id_dlup', '=', 'latest_liveupdate.dlup')
     ->where('latest_liveupdate.jracode', $jr_code)
@@ -185,10 +204,10 @@ $row_rst_latest_list_3head = DB::connection('db446161800')->table('latest_livein
 
 
 
-$KTColParam1_rst_latest12 = "ZYI";
+$KTColParam1_rst_latest12 = $airport;
 $KTColParam2_rst_latest12 = 397;
 // Define the query
-$rst_latest12 = DB::connection('db446161800')
+$rst_latest12 = DB::connection('db_con_latest')
     ->table('latest_liveupdate')
     ->leftJoin('dlup', 'dlup.id_dlup', '=', 'latest_liveupdate.dlup')
     ->where('latest_liveupdate.jracode', $KTColParam1_rst_latest12)
@@ -199,12 +218,12 @@ $rst_latest12 = DB::connection('db446161800')
     ->get();
 // Execute the query
 
-$colname_rst_ytd = "-1";
+$colname_rst_ytd = $airport;
 if (session()->has('sess_aport')) {
-    $colname_rst_ytd = session('sess_aport');
+    $colname_rst_ytd = $airport;
 }
 
-$rst_ytd = DB::connection('db446161800')->table('latest_ytd')
+$rst_ytd = DB::connection('db_con_latest')->table('latest_ytd')
     ->where('jracode', $colname_rst_ytd)
     ->first();
 
@@ -225,51 +244,51 @@ $row_rst_ytd = $rst_ytd;
 
 // Get the first row for each query
 
-//$colname_rst_ytd = "-1";ZYI
-$colname_rst_ytd = "ZYI";
+//$colname_rst_ytd = "-1";AAL
+$colname_rst_ytd = $airport;
 if (session()->has('sess_aport')) {
-    $colname_rst_ytd = session('sess_aport');
+    $colname_rst_ytd = $airport;
 }
 
-$rst_ytd = DB::connection('db446161800')->table('latest_ytd')
+$rst_ytd = DB::connection('db_con_latest')->table('latest_ytd')
     ->where('jracode', $colname_rst_ytd)
     ->first();
 
-    $colname_rst_onsystem = session('sess_aport', 'ZYI');
+    $colname_rst_onsystem = $airport;
 
     // Query the database using the Query Builder
-    $row_rst_onsystem  = DB::connection('db446161800')->table('latest_liveinput')
+    $row_rst_onsystem  = DB::connection('db_con_latest')->table('latest_liveinput')
     ->where('jracode', $colname_rst_onsystem)
     ->select('entdate')
     ->first();
 
-    $colname_rst_websource = "YKM";
+    $colname_rst_websource = $airport;
     if (session()->has('sess_aport')) {
-        $colname_rst_websource = session('sess_aport');
+        $colname_rst_websource = $airport;
     }
     
-    $row_rst_websource = DB::connection('db446161800')->table('liveupdate_websource')
+    $row_rst_websource = DB::connection('db_con_latest')->table('liveupdate_websource')
     ->where('jracode', $colname_rst_websource)
     ->select('websource')
     ->first();
     $totalRows_rst_aportdrop = $rst_aportdrop->count();
-    $latest_ap_array = $this->getLatestData();
-    $latest_apann280_arr = $this->getAirportDataForGraph();
-    $latestApGraphData = $this->getLatestApGraphData();
-    $trendData = $this->getTrendData();
-    $minMaxData = $this->getMinMaxData();
+    $latest_ap_array = $this->getLatestData($airport);
+    $latest_apann280_arr = $this->getAirportDataForGraph($airport);
+    $latestApGraphData = $this->getLatestApGraphData($airport);
+    $trendData = $this->getTrendData($airport);
+    $minMaxData = $this->getMinMaxData($airport);
     $latest_apgraphline_arr = $this->prepareChartData($latestApGraphData, $trendData);
     return view('airports.airportsActualsTottest', compact('rst_latest_aport','rst_aportdrop','row_rst_latest_list','row_rst_latest_list2','row_rst_latest_list3', 'totalRows_rst_aportdrop', 'row_rst_latest_list_3head','rst_latest12pax','rst_latest12','rst_ytd','row_rst_onsystem','row_rst_websource','latest_ap_array','latest_apann280_arr','latestApGraphData','trendData','minMaxData','latest_apgraphline_arr'));
 }
 
-    public function getLatestData()
+    public function getLatestData($airport)
     {
         // Get the necessary session variables
-        $colname_rst_latest12 = session()->has('sess_aport') ? session('sess_aport') : "ZYI";
+        $colname_rst_latest12 = $airport;
         $lastDate = session()->has('sess_lastdate') ? session('sess_lastdate') : 397;
     
         // Join the tables and run the query with conditions
-        $results = DB::connection('db446161800')
+        $results = DB::connection('db_con_latest')
             ->table('latest_liveupdate')
             ->leftJoin('dlup', 'dlup.id_dlup', '=', 'latest_liveupdate.dlup')  // LEFT JOIN between latest_liveupdate and dlup
             ->where('latest_liveupdate.jracode', $colname_rst_latest12)  // Filter by jracode from session
@@ -302,14 +321,14 @@ $rst_ytd = DB::connection('db446161800')->table('latest_ytd')
         return $latest_ap_array;  // Return the processed array
     }
 
-    public function getAirportDataForGraph()
+    public function getAirportDataForGraph($airport)
     {
         // Default to 0 if session values are not available
         $KTColParam1_rst_latest12 = $lastDate ?? 397;
-        $KTColParam2_rst_latest12 = $aportCode ??  "ZYI";
+        $KTColParam2_rst_latest12 = $airport;
 
         // Perform the database query using Laravel's query builder
-        $results = DB::connection('db446161800')
+        $results = DB::connection('db_con_latest')
             ->table('latest_liveupdate')
             ->leftJoin('dlup', 'dlup.id_dlup', '=', 'latest_liveupdate.dlup')
             ->where('latest_liveupdate.jracode', '=', $KTColParam2_rst_latest12)
@@ -343,11 +362,11 @@ $rst_ytd = DB::connection('db446161800')->table('latest_ytd')
         return $latest_apann280_arr;  // Return the data for the graph
     }
     
-    private function getLatestApGraphData()
+    private function getLatestApGraphData($airport)
     {
         $lastdate = $lastDate ?? 397;
-        $aport = $aportCode ??  "ZYI";
-        return DB::connection('db446161800')
+        $aport = $airport;
+        return DB::connection('db_con_latest')
             ->table('latest_liveupdate')
             ->join('dlup', 'dlup.id_dlup', '=', 'latest_liveupdate.dlup')
             ->where('latest_liveupdate.jracode', $aport)
@@ -361,11 +380,11 @@ $rst_ytd = DB::connection('db446161800')->table('latest_ytd')
     /**
      * Fetch the trend data.
      */
-    private function getTrendData()
+    private function getTrendData($airport)
     {
         $lastdate = $lastDate ?? 397;
-        $aport = $aportCode ??  "ZYI";
-        return DB::connection('db446161854')
+        $aport = $airport;
+        return DB::connection('db_con_409')
             ->table('xa_mon')
             ->join('dlup', 'dlup.id_dlup', '=', 'xa_mon.dlup')
             ->join('apref', 'apref.apid_apref', '=', 'xa_mon.ap_id')
@@ -380,15 +399,15 @@ $rst_ytd = DB::connection('db446161800')->table('latest_ytd')
     /**
      * Fetch the minimum and maximum values.
      */
-    private function getMinMaxData()
+    private function getMinMaxData($airport)
     {
-        $aport = $aportCode ??  "ZYI";
-        $minact = DB::connection('db446161800')
+        $aport = $airport;
+        $minact = DB::connection('db_con_latest')
             ->table('latest_liveupdate')
             ->where('latest_liveupdate.jracode', $aport)
             ->min('latest_liveupdate.fc');
 
-        $maxact = DB::connection('db446161800')
+        $maxact = DB::connection('db_con_latest')
             ->table('latest_liveupdate')
             ->where('latest_liveupdate.jracode', $aport)
             ->max('latest_liveupdate.fc');
@@ -431,7 +450,7 @@ public function airportsActualsTot()
     $stMonth = now()->format('Ym');
 
     // Query 1: Dropdown aport list
-    $aportDrop = DB::connection('db446161800')->select("
+    $aportDrop = DB::connection('db_con_latest')->select("
         SELECT 
             latest_liveinput.jracode, 
             CONCAT(latest_apref.aport_apref, '; ', dlup.dlup_monthtxt) AS aportdate
@@ -443,7 +462,7 @@ public function airportsActualsTot()
     ");
 
     // Query 2: Latest list 3 head (month - 2)
-    $latestList3Head = DB::connection('db446161800')->select("
+    $latestList3Head = DB::connection('db_con_latest')->select("
         SELECT 
             latest_liveinput.id, 
             latest_apref.aport_apref, 
@@ -461,7 +480,7 @@ public function airportsActualsTot()
     ", [$stMonth]);
 
     // Query 3: Dropdown list (used in form select)
-    $latestList = DB::connection('db446161800')->select("
+    $latestList = DB::connection('db_con_latest')->select("
         SELECT 
             latest_liveinput.jracode, 
             latest_apref.aport_apref
@@ -472,7 +491,7 @@ public function airportsActualsTot()
     ");
 
     // Query 4: Airport stats (most recent)
-    $airportStats = DB::connection('db446161800')->selectOne("
+    $airportStats = DB::connection('db_con_latest')->selectOne("
         SELECT 
             dlup.dlup_fullmontxt,
             latest_liveinput.paxchange,

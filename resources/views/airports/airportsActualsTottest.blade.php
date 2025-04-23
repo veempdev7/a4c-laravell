@@ -2,6 +2,16 @@
 
 @section('content')
 <div id="container">
+  <!-- Display success or error message -->
+  @if(session('error'))
+  <div class="alert alert-danger">
+    {{ session('error') }}
+  </div>
+  @elseif(session('success'))
+  <div class="alert alert-success">
+    {{ session('success') }}
+  </div>
+  @endif
   <table width="100%" border="0"> <!-- global table -->
     <tr>
       <td>
@@ -181,7 +191,8 @@
 
                       <div class="section group">
                         <!-- First form -->
-                        <form action="#" method="post" name="form1" class="formtest" id="form3">
+                        <form action="{{ route('airports.actuals.tottest') }}" method="post" name="form1" class="formtest" id="form3">
+                        @csrf
                           <div class="col span_1_of_3">
                             <!-- No need for duplicate select, just use one select per form -->
                             <select name="searchAPID" size="25" class="a-10-b-listmenu160bl select_box" id="searchAPID">
@@ -194,7 +205,8 @@
                         </form>
 
                         <!-- Second form -->
-                        <form action="#" method="post" name="form2" class="formtest" id="form4">
+                        <form action="{{ route('airports.actuals.tottest') }}" method="post" name="form2" class="formtest" id="form4">
+                        @csrf
                           <div class="col span_1_of_3">
                             <!-- Same select ID, but a separate form -->
                             <select name="searchAPID" size="25" class="a-10-b-listmenu160bl select_box" id="searchAPID">
@@ -207,7 +219,8 @@
                         </form>
 
                         <!-- Third form -->
-                        <form action="#" method="post" name="form2" class="formtest" id="form5">
+                        <form action="{{ route('airports.actuals.tottest') }}" method="post" name="form2" class="formtest" id="form5">
+                        @csrf
                           <div class="col span_1_of_3">
                             <!-- Same select ID, but a separate form -->
                             <select name="searchAPID" size="25" class="a-10-b-listmenu160bl select_box" id="searchAPID">
@@ -225,7 +238,8 @@
                   </tr>
                   <tr>
                     <td align="center">&nbsp;</td>
-                  </tr> <tr>
+                  </tr>
+                  <tr>
                     <td align="center">&nbsp;</td>
                   </tr>
                   <tr>
@@ -282,7 +296,7 @@
 
                       </div>
                     </td>
-                  </tr>              
+                  </tr>
                   <tr>
                     <td align="center">&nbsp;</td>
                   </tr>
@@ -464,10 +478,12 @@
                                   <!-- <form class="dwn_sprd_btn" id="formdown1" name="formdown1" method="post" action="csvpages/airportactuals_lot_csv.php">
                                         <i class="fa fa-angle-down" aria-hidden="true"><input name="export" type="submit" id="export" class="button_export" aria-hidden="true" 
                         /> </i> -->
-                        <form id="formdown1" method="post" action="{{ url('csvpages/airportactuals_lot_csv') }}">
-                            @csrf
-                            <input name="export" type="submit" class="whit_btn" id="export" value="Spreadsheet Download">
-                        </form>
+                                  <form id="formdown1" method="post" action="{{ url('airports/airportsactualstot') }}">
+                                    @csrf
+                                    <input type="hidden" name="csvdownload" value="true"> <!-- Hidden input to trigger the CSV download -->
+                                    <input type="hidden" name="searchAPID" value="{{ session('sess_aport', 'AAL') }}">
+                                    <input name="export" type="submit" class="whit_btn" id="export" value="Spreadsheet Download">
+                                  </form>
                                 </td>
                                 <td>&nbsp;</td>
                               </tr>

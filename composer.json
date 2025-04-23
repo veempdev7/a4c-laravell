@@ -24,7 +24,12 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Http/Helpers/CsvHelper.php",
+            "app/Http/Helpers/DateHelper.php",
+            "app/Http/Helpers/OtpHelper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

@@ -7,19 +7,20 @@ use App\Http\Middleware\AuthenticateLoginApp;
 use App\Http\Controllers\Airport\AirportController;
 use App\Http\Controllers\csvpages\CsvpagesController;
 
-Route::get('login', [LoginAppController::class, 'showLoginForm'])->name('loginapp.show');
+Route::get('/', [LoginAppController::class, 'showLoginForm'])->name('loginapp.show');
+Route::get('index', [LoginAppController::class, 'showLoginForm'])->name('loginapp.show');
 Route::post('login', [LoginAppController::class, 'login'])->name('loginapp.login');
 
 
 
 Route::middleware(AuthenticateLoginApp::class)->group(function () {
     Route::post('logout', [LoginAppController::class, 'logout'])->name('loginapp.logout');
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('welcome/welcomepage', [HomeController::class, 'index'])->name('home');
 });
 
 Route::middleware([AuthenticateLoginApp::class])->prefix('airports')->group(function () {
-    Route::get('home', [AirportController::class, 'airportshome'])->name('airports.home');
-    Route::get('actuals-forecast-multi', [AirportController::class, 'actualsForecastMulti'])->name('airports.actuals.forecast.multi');
+    Route::get('airportshome', [AirportController::class, 'airportshome'])->name('airports.airportshome');
+    Route::get('actuals_forecasts_multi', [AirportController::class, 'actualsForecastMulti'])->name('airports.actuals.forecast.multi');
     Route::get('airport-actual-country-multi-comparedata', [AirportController::class, 'airportActualCountryMultiCompareData'])->name('airports.actual.country.multi.comparedata');
     Route::get('airport-actual-multi-comparedata', [AirportController::class, 'airportActualMultiCompareData'])->name('airports.actual.multi.comparedata');
     Route::get('airport-forecast-country-multi-comparedata', [AirportController::class, 'airportForecastCountryMultiCompareData'])->name('airports.forecast.country.multi.comparedata');
@@ -39,6 +40,7 @@ Route::middleware([AuthenticateLoginApp::class])->prefix('airports')->group(func
     Route::get('actuals-int-lat', [AirportController::class, 'airportsActualsIntLat'])->name('airports.actuals.int.lat');
     Route::get('actuals-tot', [AirportController::class, 'airportsActualsTot'])->name('airports.actuals.tot');
     Route::get('airportsactualstot', [AirportController::class, 'airportsActualsTottest'])->name('airports.actuals.tottest');
+    Route::post('airportsactualstot', [AirportController::class, 'airportsActualsTottest'])->name('airports.actuals.tottest');
     Route::get('actuals-tot-lat', [AirportController::class, 'airportsActualsTotLat'])->name('airports.actuals.tot.lat');
     Route::get('forecasts', [AirportController::class, 'airportsForecasts'])->name('airports.forecasts');
     Route::get('forecasts-airp', [AirportController::class, 'airportsForecastsAirp'])->name('airports.forecasts.airp');
@@ -82,6 +84,7 @@ Route::middleware([AuthenticateLoginApp::class])->prefix('airports')->group(func
 });
 
 Route::middleware([AuthenticateLoginApp::class])->prefix('csvpages')->group(function () {
-Route::post('airportactuals_lot_csv', [CsvpagesController::class, 'airportactuals_lot_csv'])->name('airportactuals_lot_csv.download');
+Route::get('airportactuals_lot_csv', [CsvpagesController::class, 'airportactuals_lot_csv'])->name('airportactuals_lot_csv.download');
 
 });
+
