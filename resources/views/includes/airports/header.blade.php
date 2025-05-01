@@ -3,8 +3,39 @@
     <table width="100%" border="0" bgcolor="#F1F1F1"> <!-- central elastic table -->
       <tr>
         <td valign="top">
-          <div align="center">
+          <div align="center"> 
             <table width="1000" border="0" bgcolor="#FFFFFF">
+            @if (request()->is('airports/airportsquicksum'))
+              <tr>
+              <td><table width="100%" border="0" bgcolor="#DDDEE0">
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td class="emmahelveticaa15darkgreylight">AIRPORTS 1500 QUICK SUMMARIES</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td width="7%">&nbsp;</td>
+                  <td width="88%">&nbsp;</td>
+                  <td width="5%">&nbsp;</td>
+                </tr>
+              </table></td>
+            </tr> 
+              @else
               <tr>
                 <td>
                   <table width="100%" height="350" background="../clientconvertgraphics2016/skyplane1000.png">
@@ -40,6 +71,7 @@
                   </table>
                 </td>
               </tr>
+              
               <!-- central fixed table -->
               <tr>
                 <td>
@@ -113,4 +145,4 @@
               <tr>
                 <td>&nbsp;</td>
               </tr>
-          
+              @endif              

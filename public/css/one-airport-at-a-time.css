@@ -1,0 +1,14 @@
+.ternimal_data_opt {
+    margin: 0px !important;
+    width: 27px;
+    vertical-align: text-bottom;
+    }
+    .chart_selector_div {
+    align-items: center;
+    text-align: center;
+    border: solid 1px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-left: 7px;
+    margin-right: 7px;
+}

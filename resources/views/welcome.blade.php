@@ -140,7 +140,7 @@
 
                                                                 <div id="ClientMenu2_container" class="FM2_ClientMenu2_container" style="display:block">
                                                                     <ul id="ClientMenu2" class="FM2_ClientMenu2">
-                                                                        <li> <a href="../welcome/welcomepage.php" target="_self">
+                                                                        <li> <a href="{{ route('home') }}" target="_self">
                                                                                 <font class="leaf">Home</font>
                                                                             </a></li>
                                                                         <li>
@@ -697,29 +697,27 @@
     </td>
 </tr>
 </table>
-<div id="myModal" class="modal fade fade_out" role="dialog" data-keyboard="false" data-backdrop="static">
+<!-- <div id="myModal" class="modal fade fade_out" role="dialog" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog welcome_msg">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-body">
-                <p class="emmahelveticaa30darkgreylight">Download Notice</p>
-                <p class="emmahelveticaa15darkgreybold">Thank you for logging in to your Air4casts website. You may wish to download data while you’re here.</p>
-                <p class="emmahelveticaa15darkgrey"> That’s absolutely fine. You should! But our data is copyright protected and so it is important that we have a record of the downloads created on our website each day.
-                </p>
-                <p class="emmahelveticaa15darkgrey">Under new GDPR laws, you must consent to having information about your website usage logged in this way. Please give us your consent below and continue into your website.</p>
-                <p class="emmahelveticaa15darkgrey" style="padding-bottom:0px;">If you have questions, please get in touch with your Support Team:
-                <div class="link emmahelveticaa15darkgrey"><a href="http://>support@air4casts.com" target="_blank">support@air4casts.com</a></div>
-                </p>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default cnf_btn" data-dismiss="modal" data-toggle="modal" data-target="#coronaModal" id="gdpr_button"><i class="fa fa-check" aria-hidden="true" style="color:white"></i><span class="space emmahelveticaa15white">I consent</span></button>
-                <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
-            </div>
-        </div>
+<div class="modal-content">
+    <div class="modal-body">
+        <p class="emmahelveticaa30darkgreylight">Download Notice</p>
+        <p class="emmahelveticaa15darkgreybold">Thank you for logging in to your Air4casts website. You may wish to download data while you’re here.</p>
+        <p class="emmahelveticaa15darkgrey"> That’s absolutely fine. You should! But our data is copyright protected and so it is important that we have a record of the downloads created on our website each day.
+        </p>
+        <p class="emmahelveticaa15darkgrey">Under new GDPR laws, you must consent to having information about your website usage logged in this way. Please give us your consent below and continue into your website.</p>
+        <p class="emmahelveticaa15darkgrey" style="padding-bottom:0px;">If you have questions, please get in touch with your Support Team:
+        <div class="link emmahelveticaa15darkgrey"><a href="http://>support@air4casts.com" target="_blank">support@air4casts.com</a></div>
+        </p>
 
     </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default cnf_btn" data-dismiss="modal" data-toggle="modal" data-target="#coronaModal" id="gdpr_button"><i class="fa fa-check" aria-hidden="true" style="color:white"></i><span class="space emmahelveticaa15white">I consent</span></button>
+    </div>
+</div> -->
+
+</div>
 </div>
 
 @endsection

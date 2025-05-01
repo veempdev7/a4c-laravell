@@ -1,21 +1,52 @@
 <style type="text/css">
-.oneColElsCtr #container {
-	width: 100%;
-	background: #FFFFFF;
-	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
-	border: 0px solid #FFFFFF;
-	text-align: left; /* this overrides the text-align: center on the body element. */
-}
-.oneColElsCtr #mainContent {
-	padding: 0px; /* remember that padding is the space inside the div box and margin is the space outside the div box */
-}
-#AirportsMenuSimple_container{height:auto !important; margin: 0 !important; width:1000px !important;}
-ul.FM2_AirportsMenuSimple li a{width:320px !important;}
-ul.FM2_AirportsMenuSimple li ul{left:0 !important;}
-ul.FM2_AirportsMenuSimple ul li a,ul.FM2_AirportsMenuSimple ul li:hover >a, ul.FM2_AirportsMenuSimple ul li.hover >a{width: 470px !important;}
-ul.FM2_ClientMenu2 li a{height:67px !important;}
-ul.FM2_ClientMenu2 li:hover >a, ul.FM2_ClientMenu2 li.hover >a{height: 67px !important;}
-#AirportsMenuSimple_container ul.FM2_AirportsMenuSimple li a i{float:right; font-size: 18px}
+    .oneColElsCtr #container {
+        width: 100%;
+        background: #FFFFFF;
+        margin: 0 auto;
+        /* the auto margins (in conjunction with a width) center the page */
+        border: 0px solid #FFFFFF;
+        text-align: left;
+        /* this overrides the text-align: center on the body element. */
+    }
+
+    .oneColElsCtr #mainContent {
+        padding: 0px;
+        /* remember that padding is the space inside the div box and margin is the space outside the div box */
+    }
+
+    #AirportsMenuSimple_container {
+        height: auto !important;
+        margin: 0 !important;
+        width: 1000px !important;
+    }
+
+    ul.FM2_AirportsMenuSimple li a {
+        width: 320px !important;
+    }
+
+    ul.FM2_AirportsMenuSimple li ul {
+        left: 0 !important;
+    }
+
+    ul.FM2_AirportsMenuSimple ul li a,
+    ul.FM2_AirportsMenuSimple ul li:hover>a,
+    ul.FM2_AirportsMenuSimple ul li.hover>a {
+        width: 470px !important;
+    }
+
+    ul.FM2_ClientMenu2 li a {
+        height: 67px !important;
+    }
+
+    ul.FM2_ClientMenu2 li:hover>a,
+    ul.FM2_ClientMenu2 li.hover>a {
+        height: 67px !important;
+    }
+
+    #AirportsMenuSimple_container ul.FM2_AirportsMenuSimple li a i {
+        float: right;
+        font-size: 18px
+    }
 </style>
 <style>
     ul.FM2_ClientMenu2 li a {
@@ -30,7 +61,6 @@ ul.FM2_ClientMenu2 li:hover >a, ul.FM2_ClientMenu2 li.hover >a{height: 67px !imp
     ul.FM2_ClientMenu2 li a:hover font {
         font-weight: normal !important;
     }
-    
 </style>
 
 <td>
@@ -55,7 +85,6 @@ ul.FM2_ClientMenu2 li:hover >a, ul.FM2_ClientMenu2 li.hover >a{height: 67px !imp
                                             </a></td>
                                         <td width="5%">&nbsp;</td>
                                         <td width="48%" align="right" class="emmahelveticaa22whitebold">
-
                                             Air4casts
                                         </td>
                                         <td width="14%" align="right" class="emmahelveticaa14whitelight">
@@ -94,6 +123,9 @@ ul.FM2_ClientMenu2 li:hover >a, ul.FM2_ClientMenu2 li.hover >a{height: 67px !imp
                         <tr>
                             <td>&nbsp;</td>
                         </tr>
+                        @if (request()->is('airports/airportsquicksum'))
+
+                        @else
                         <tr>
                             <td>
                                 <table width="100%" border="0">
@@ -118,104 +150,124 @@ ul.FM2_ClientMenu2 li:hover >a, ul.FM2_ClientMenu2 li.hover >a{height: 67px !imp
                             </td>
                         </tr>
                         <tr>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                    <td>&nbsp;</td>
-                                                </tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
                         <tr>
-                                        <td height="60">
-                                            <table width="100%" border="0">
-                                                <tr>
-                                                    <td width="2%">&nbsp;</td>
-                                                    <td width="96%" align="center">&nbsp;
+                            <td height="60">
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td width="2%">&nbsp;</td>
+                                        <td width="96%" align="center">&nbsp;
 
-                                                    <div id="ClientMenu2_container" class="FM2_ClientMenu2_container" style="display:block">
-                                                                    <ul id="ClientMenu2" class="FM2_ClientMenu2">
-                                                                        <li> <a href="../welcome/welcomepage.php" target="_self">
-                                                                                <font class="leaf">Home</font>
+                                            <div id="ClientMenu2_container" class="FM2_ClientMenu2_container" style="display:block">
+                                                <ul id="ClientMenu2" class="FM2_ClientMenu2">
+                                                    <li> <a href="{{ route('home') }}" target="_self">
+                                                            <font class="leaf">Home</font>
+                                                        </a></li>
+                                                    <li>
+                                                        <a target="_self" class="selected">
+                                                            <font class="leaf"><span class="branch">Data&nbsp;Modules &nbsp; <i class="fa fa-angle-down"></i></span></font>
+                                                        </a>
+                                                        <div class="mega-menu" aria-hidden="true" role="menu">
+                                                            <div class="nav-column air_meg_container">
+                                                                <div class="nav-column air_mega">
+                                                                    <h3>Global</h3>
+                                                                    <ul>
+                                                                        <li id="1" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                <font class="leaf">Airports&nbsp;1500</font>
                                                                             </a></li>
-                                                                        <li>
-                                                                            <a target="_self" class="selected">
-                                                                                <font class="leaf"><span class="branch">Data&nbsp;Modules &nbsp; <i class="fa fa-angle-down"></i></span></font>
-                                                                            </a>
-                                                                            <div class="mega-menu" aria-hidden="true" role="menu">
-                                                                                <div class="nav-column air_meg_container">
-                                                                                    <div class="nav-column air_mega">
-                                                                                        <h3>Global</h3>
-                                                                                        <ul>
-                                                                                            <li id="1" role="menuitem" class="menuitem"><a target="_self" class="selected">
-                                                                                                    <font class="leaf">Airports&nbsp;1500</font>
-                                                                                                </a></li>
-                                                                                            <li id="5" role="menuitem" class="menuitem"><a target="_self" class="selected">
-                                                                                                    <font class="leaf">Terminals&nbsp;2000</font>
-                                                                                                </a></li>
-                                                                                            <li id="2" role="menuitem" class="menuitem"><a target="_self" class="selected">
-                                                                                                    <font class="leaf">Nationalities&nbsp;1000</font>
-                                                                                                </a></li>
-                                                                                            <li id="3" role="menuitem" class="menuitem"><a target="_self" class="selected">
-                                                                                                    <font class="leaf">Routes&nbsp;1000</font>
-                                                                                                </a></li>
-                                                                                            <li id="4" role="menuitem" class="menuitem"><a target="_self" class="selected">
-                                                                                                    <font class="leaf">Retail&nbsp;Reach</font>
-                                                                                                </a></li>
-                                                                                            <li id="7" role="menuitem" class="menuitem"><a target="_self" class="selected">
-                                                                                                    <font class="leaf">ACI&nbsp;x&nbsp;A4C</font>
-                                                                                                </a></li>
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                    <div class="nav-column air_mega">
-                                                                                        <h3>Market-Specific</h3>
-                                                                                        <ul>
-                                                                                            <li id="8" role="menuitem" class="menuitem"><a target="_self" class="selected">
-                                                                                                    <font class="leaf">ChinaDomestic</font>
-                                                                                                </a></li>
-                                                                                                <li role="menuitem" class="menuitem">&nbsp;</li>
-                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
-                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
-                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
-                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
-                                                                                        </ul>
-
-                                                                                    </div>
-                                                                                    <div class="nav-column air_mega">
-                                                                                        <h3>Research-Based</h3>
-                                                                                        <ul>
-                                                                                            <li id="6" role="menuitem" class="menuitem"><a target="_self" class="selected">
-                                                                                                    <font class="leaf">The Luxury Shopper</font>
-                                                                                                </a></li>
-                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
-                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
-                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
-                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
-                                                                                            <li role="menuitem" class="menuitem">&nbsp;</li>
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                    <div class="nav-column air_mega">
-                                                                                        <h3>Other</h3>
-                                                                                        <ul>
-                                                                                            <li id="13" role="menuitem" class="menuitem"><a target="_self" class="selected">
-                                                                                                    <font class="leaf">Gatewayz</font>
-                                                                                                </a></li>
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li id="9"> <a target="_self" class="selected">
-                                                                                <font class="leaf">Beyond&nbsp;the&nbsp;Airport</font>
+                                                                        <li id="5" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                <font class="leaf">Terminals&nbsp;2000</font>
                                                                             </a></li>
-                                                                        <li id="11"> <a target="_self" class="selected">
-                                                                                <font class="leaf">Apps</font>
+                                                                        <li id="2" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                <font class="leaf">Nationalities&nbsp;1000</font>
+                                                                            </a></li>
+                                                                        <li id="3" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                <font class="leaf">Routes&nbsp;1000</font>
+                                                                            </a></li>
+                                                                        <li id="4" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                <font class="leaf">Retail&nbsp;Reach</font>
+                                                                            </a></li>
+                                                                        <li id="7" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                <font class="leaf">ACI&nbsp;x&nbsp;A4C</font>
                                                                             </a></li>
                                                                     </ul>
                                                                 </div>
+                                                                <div class="nav-column air_mega">
+                                                                    <h3>Market-Specific</h3>
+                                                                    <ul>
+                                                                        <li id="8" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                <font class="leaf">ChinaDomestic</font>
+                                                                            </a></li>
+                                                                        <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                        <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                        <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                        <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                        <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                    </ul>
 
-                                                    </td>
-                                                    <td width="2%">&nbsp;</td>
-                                                </tr>
-                                            </table>
+                                                                </div>
+                                                                <div class="nav-column air_mega">
+                                                                    <h3>Research-Based</h3>
+                                                                    <ul>
+                                                                        <li id="6" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                <font class="leaf">The Luxury Shopper</font>
+                                                                            </a></li>
+                                                                        <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                        <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                        <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                        <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                        <li role="menuitem" class="menuitem">&nbsp;</li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="nav-column air_mega">
+                                                                    <h3>Other</h3>
+                                                                    <ul>
+                                                                        <li id="13" role="menuitem" class="menuitem"><a target="_self" class="selected">
+                                                                                <font class="leaf">Gatewayz</font>
+                                                                            </a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li id="9"> <a target="_self" class="selected">
+                                                            <font class="leaf">Beyond&nbsp;the&nbsp;Airport</font>
+                                                        </a></li>
+                                                    <li id="11"> <a target="_self" class="selected">
+                                                            <font class="leaf">Apps</font>
+                                                        </a></li>
+                                                </ul>
+                                            </div>
+
                                         </td>
+                                        <td width="2%">&nbsp;</td>
                                     </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        @endif
+                        <tr>
+              <td><table width="100%" border="0">
+                @if (request()->is('airports/airportsquicksum'))  
+                <tr>
+                  <td width="4%">&nbsp;</td>
+                  <td width="40%" class="emmahelveticaa20white" style="padding:10px 0;"><table width="100%" border="0">
+                    <tr>
+                      <td width="6%"><a href="{{ route('home') }}">
+                      <img src="../clientconvertgraphics2016/mailerarrowtransprev.png" width="18" height="24" /></a></td>
+                      <td width="89%" class="emmahelveticaa15white"><a href="{{ route('airports.airportshome') }}" class="emmahelveticaa15white">Return to Airports 1500</a></td>
+                      <td width="5%">&nbsp;</td>
+                    </tr>
+                  </table></td>
+                  <td width="45%" align="center">&nbsp;</td>
+                  <td width="8%">&nbsp;</td>
+                  </tr>
+                @endif
+                </table></td>
+            </tr>
                     </table>
                 </div>
             </td>

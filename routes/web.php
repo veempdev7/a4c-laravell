@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginAppController;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AuthenticateLoginApp;
 use App\Http\Controllers\Airport\AirportController;
+use App\Http\Controllers\Airport\AirportsQuickSumController;
 use App\Http\Helpers\DownloadHelper;
 use App\Http\Helpers\airports\AirportHelper;
 
@@ -31,18 +32,19 @@ Route::middleware([AuthenticateLoginApp::class])->prefix('airports')->group(func
     Route::get('actual-airports', [AirportController::class, 'airportsActualAirports'])->name('airports.actual.airports');
     Route::get('actual-airports-countrymulti', [AirportController::class, 'airportsActualAirportsCountryMulti'])->name('airports.actual.airports.countrymulti');
     Route::get('actual-airports-multi', [AirportController::class, 'airportsActualAirportsMulti'])->name('airports.actual.airports.multi');
-    Route::get('actual-lat-month', [AirportController::class, 'airportsActualLatMonth'])->name('airports.actual.lat.month');
+    Route::get('airportsactuallatmonth', [AirportController::class, 'airportsActualLatMonth'])->name('airports.airportsactuallatmonth');
     Route::get('actuals-airl', [AirportController::class, 'airportsActualsAirl'])->name('airports.actuals.airl');
     Route::get('actuals-airl-alpr', [AirportController::class, 'airportsActualsAirlALPR'])->name('airports.actuals.airl.alpr');
     Route::get('actuals-airl-alr', [AirportController::class, 'airportsActualsAirlALR'])->name('airports.actuals.airl.alr');
     Route::get('actuals-airl-lp', [AirportController::class, 'airportsActualsAirlLP'])->name('airports.actuals.airl.lp');
     Route::get('actuals-airl-lpr', [AirportController::class, 'airportsActualsAirlLPR'])->name('airports.actuals.airl.lpr');
     Route::get('actuals-airl-p', [AirportController::class, 'airportsActualsAirlP'])->name('airports.actuals.airl.p');
-    Route::get('actuals-int', [AirportController::class, 'airportsActualsInt'])->name('airports.actuals.int');
+    Route::get('airportsactualsint', [AirportController::class, 'airportsActualsInt'])->name('airports.airportsactualsint');
+    Route::post('airportsactualsint', [AirportController::class, 'airportsActualsInt'])->name('airports.airportsactualsint');
     Route::get('actuals-int-lat', [AirportController::class, 'airportsActualsIntLat'])->name('airports.actuals.int.lat');
-    Route::get('actuals-tot', [AirportController::class, 'airportsActualsTot'])->name('airports.actuals.tot');
-    Route::get('airportsactualstot', [AirportController::class, 'airportsActualsTottest'])->name('airports.actuals.tottest');
-    Route::post('airportsactualstot', [AirportController::class, 'airportsActualsTottest'])->name('airports.actuals.tottest');
+    //Route::get('actuals-tot', [AirportController::class, 'airportsActualsTot'])->name('airports.actuals.tot');
+    Route::get('airportsactualstot', [AirportController::class, 'airportsActualsTot'])->name('airports.actuals.tottest');
+    Route::post('airportsactualstot', [AirportController::class, 'airportsActualsTot'])->name('airports.actuals.tottest');
     Route::get('actuals-tot-lat', [AirportController::class, 'airportsActualsTotLat'])->name('airports.actuals.tot.lat');
     Route::get('airportsforecasts', [AirportController::class, 'airportsForecasts'])->name('airports.airportsforecasts');
     Route::post('airportsforecastsairp', [AirportController::class, 'airportsForecastsAirp'])->name('airports.airportsforecastsairp');
@@ -52,7 +54,7 @@ Route::middleware([AuthenticateLoginApp::class])->prefix('airports')->group(func
     Route::get('forecasts-countrymulti', [AirportController::class, 'airportsForecastsCountryMulti'])->name('airports.forecasts.countrymulti');
     Route::post('airportsforecastsreg', [AirportController::class, 'airportsForecastsReg'])->name('airports.airportsforecastsreg');
     Route::post('airportsforecastsworlds', [AirportController::class, 'airportsForecastsWorld'])->name('airports.airportsforecastsworld');
-    Route::get('quicksum', [AirportController::class, 'airportsQuickSum'])->name('airports.quicksum');
+    Route::get('airportsquicksum', [AirportController::class, 'airportsQuickSum'])->name('airports.airportsquicksum');
     Route::get('quicksum-airp-changes', [AirportController::class, 'airportsQuickSumAirpChanges'])->name('airports.quicksum.airp.changes');
     Route::get('quicksum-airport-recent-growth', [AirportController::class, 'airportsQuickSumAirportRecentGrowth'])->name('airports.quicksum.airport.recent.growth');
     Route::get('quicksum-airpreg-changes', [AirportController::class, 'airportsQuickSumAirpRegChanges'])->name('airports.quicksum.airpreg.changes');
@@ -72,10 +74,10 @@ Route::middleware([AuthenticateLoginApp::class])->prefix('airports')->group(func
     Route::get('compare-region-forecasts', [AirportController::class, 'compareRegionForecasts'])->name('airports.compare.region.forecasts');
     Route::get('country-forecasts-multi', [AirportController::class, 'countryForecastsMulti'])->name('airports.country.forecasts.multi');
     Route::get('countrylist', [AirportController::class, 'countryList'])->name('airports.countrylist');
-    Route::get('find-aportcode', [AirportController::class, 'findAportCode'])->name('airports.find.aportcode');
-    Route::get('find-aportcode-dom', [AirportController::class, 'findAportCodeDom'])->name('airports.find.aportcode.dom');
-    Route::get('find-aportlist', [AirportController::class, 'findAportList'])->name('airports.find.aportlist');
-    Route::get('find-aportlist-dom', [AirportController::class, 'findAportListDom'])->name('airports.find.aportlist.dom');
+    Route::post('find_aportcode', [AirportController::class, 'findAportCode'])->name('airports.find_aportcode');
+    Route::post('find_aportcode_dom', [AirportController::class, 'findAportCodeDom'])->name('airports.find_aportcode_dom');
+    Route::post('find_aportlist', [AirportController::class, 'findAportList'])->name('airports.find_aportlist');
+    Route::post('find_aportlist_dom', [AirportController::class, 'findAportListDom'])->name('airports.find_aportlist_dom');
     Route::get('multi-airport-actual', [AirportController::class, 'multiAirportActual'])->name('airports.multi.airport.actual');
     Route::get('multi-country-actual', [AirportController::class, 'multiCountryActual'])->name('airports.multi.country.actual');
     Route::get('multi-region-actual', [AirportController::class, 'multiRegionActual'])->name('airports.multi.region.actual');
@@ -83,6 +85,9 @@ Route::middleware([AuthenticateLoginApp::class])->prefix('airports')->group(func
     Route::get('region-forecasts-multi', [AirportController::class, 'regionForecastsMulti'])->name('airports.region.forecasts.multi');
     Route::get('regionlist', [AirportController::class, 'regionList'])->name('airports.regionlist');
     Route::get('bigdownload-alertbox', [AirportController::class, 'theBigDownloadRestrictionAlertbox'])->name('airports.bigdownload.alertbox');
+
+    Route::get('one-airport-at-a-time', [AirportController::class, 'one_airport_at_a_time'])->name('airports.one-airport-at-a-time');
+
     Route::post('search', [AirportController::class, 'search'])->name('airports.search');
     Route::post('alertboxallairportview', function () {
         return response(DownloadHelper::checkDownloadLimit());
@@ -161,9 +166,30 @@ Route::middleware([AuthenticateLoginApp::class])->prefix('airports')->group(func
         return AirportHelper::airportsforecastsworld_quaterly();
     })->name('airports.csvpages.airportsforecastsworld_quaterly');
 
+    Route::post('csvpages/quicksum_worldsummary_csv', function () {
+        return AirportHelper::quicksum_worldsummary_csv();
+    })->name('airports.csvpages.quicksum_worldsummary_csv');
+    
+
+    Route::post('csvpages/one-airport-at-a-time-csv', function () {
+        return AirportHelper::one_airport_at_a_time_csv();
+    })->name('airports.csvpages.one_airport_at_a_time_csv');
+
+// ----- quicksumgraphs
+Route::get('quicksumgraphs/quicksumam1', [AirportsQuickSumController::class, 'quicksumAm1'])->name('charts.quicksumam1');
+Route::get('quicksumgraphs/quicksumam2', [AirportsQuickSumController::class, 'quicksumAm2'])->name('charts.quicksumam2');
+Route::get('quicksumgraphs/quicksumam3', [AirportsQuickSumController::class, 'quicksumAm3'])->name('charts.quicksumam3');
+Route::get('quicksumgraphs/quicksumam4', [AirportsQuickSumController::class, 'quicksumAm4'])->name('charts.quicksumam4');
+Route::get('quicksumgraphs/quicksumam5', [AirportsQuickSumController::class, 'quicksumAm5'])->name('charts.quicksumam5');
+Route::get('quicksumgraphs/quicksumam6', [AirportsQuickSumController::class, 'quicksumAm6'])->name('charts.quicksumam6');
+Route::get('quicksumgraphs/quicksumam7', [AirportsQuickSumController::class, 'quicksumAm7'])->name('charts.quicksumam7');
+
+
 
     
 });
+
+
 
 
 

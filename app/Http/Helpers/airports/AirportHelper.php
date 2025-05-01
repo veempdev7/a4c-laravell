@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Response;
+use Carbon\Carbon;
 
 
 class AirportHelper
@@ -936,4 +938,109 @@ public static function airportsforecastsworld_monthly()
         // Return the CSV as a streamed response
         return response()->stream($callback, 200, $headers);
     }
+
+    public static function quicksum_worldsummary_csv()
+{
+    // Set headers for CSV file download
+    $headers = [
+        'Content-Type' => 'text/csv; charset=utf-8',
+        'Content-Disposition' => 'attachment; filename=db_export__' . date('Y-m-d') . '.csv',
+    ];
+
+    $callback = function () {
+        $output = fopen('php://output', 'w');
+
+        fputcsv($output,[]);
+
+        // Define regions with tables and columns
+        $regions = [
+            'Global International Passengers' => ['table' => 'latest_track3', 'columns' => ['montxt', 'datach']],
+            'Africa International Passengers' => ['table' => 'latest_track3_afr', 'columns' => ['id', 'dlup', 'montxt', 'datach']],
+            'Asia/Pacific International Passengers' => ['table' => 'latest_track3_asp', 'columns' => ['id', 'dlup', 'montxt', 'datach', 'year']],
+            'Europe International Passengers' => ['table' => 'latest_track3_eur', 'columns' => ['id', 'dlup', 'montxt', 'datach']],
+            'Latin America International Passengers' => ['table' => 'latest_track3_latam', 'columns' => ['id', 'dlup', 'montxt', 'datach']],
+            'North America International Passengers' => ['table' => 'latest_track3_nam', 'columns' => ['id', 'dlup', 'montxt', 'datach']],
+            'Middle East International Passengers' => ['table' => 'latest_track3_mea', 'columns' => ['id', 'dlup', 'montxt', 'datach']],
+        ];
+
+        foreach ($regions as $title => $info) {
+            // Write region title and headers
+            fputcsv($output, [$title]);
+            fputcsv($output, $info['columns']);
+
+            // Fetch rows from database
+            $rows = DB::connection('db_con_latest')
+                ->table($info['table'])
+                ->select($info['columns'])
+                ->orderBy('dlup')
+                ->get();
+
+            foreach ($rows as $row) {
+                $data = [];
+                foreach ($info['columns'] as $column) {
+                    $data[] = $row->$column ?? '';
+                }
+                fputcsv($output, $data);
+            }
+        }
+
+        fclose($output);
+    };
+
+    return response()->stream($callback, 200, $headers);
+}
+
+public static function one_airport_at_a_time_csv()
+{
+    $apcode = Session::get('sess_airport_sel');
+
+    if (!$apcode) {
+        abort(400, 'No airport selected in session.');
+    }
+
+    $data = DB::connection('db_con_latest')
+    ->table('latest_act')
+    ->selectRaw('dlup, dno, MAX(apcode) as apcode, MAX(apname) as apname, MAX(year) as year, MAX(montxt) as montxt, MAX(dname) as dname, MAX(pax) as pax')
+    ->where('apcode', $apcode)
+    ->where('year', '>', 2018)
+    ->groupBy('dlup', 'dno')
+    ->orderBy('dlup', 'asc')
+    ->get();
+
+    $csvData = [];
+    $csvData[] = ['One Airport At a Time'];
+    $csvData[] = [''];
+    $csvData[] = ['Airport Actuals Passenger Numbers'];
+    $csvData[] = [''];
+    $csvData[] = ['One Airport Actuals'];
+    $csvData[] = [''];
+    $csvData[] = [Carbon::now()->format('m/d/Y')];
+    $csvData[] = [''];
+    $csvData[] = ['Airport', 'Year', 'Month', 'Data No', 'Pax 000'];
+
+    foreach ($data as $row) {
+        $csvData[] = [
+            $row->apcode . ' :' . $row->apname,
+            $row->year,
+            $row->montxt,
+            $row->dname,
+            $row->pax,
+        ];
+    }
+
+    $filename = 'Airport_Actuals__' . Carbon::now()->format('Y-m-d') . '.csv';
+
+    return Response::stream(function () use ($csvData) {
+        $handle = fopen('php://output', 'w');
+        foreach ($csvData as $line) {
+            fputcsv($handle, $line);
+        }
+        fclose($handle);
+    }, 200, [
+        'Content-Type' => 'text/csv',
+        'Content-Disposition' => "attachment; filename={$filename}",
+    ]);
+}
+
+
 }

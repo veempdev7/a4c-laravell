@@ -8,7 +8,7 @@
     <title>@yield('title', 'Air4casts Online Login')</title>
 
     <!-- Bootstrap CSS from CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"> -->
 
     <!-- Custom CSS files in public/css/ -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css">
@@ -28,6 +28,8 @@
     <!-- Menu CSS -->
     <link href="{{ asset('includes/FlexiMenus2/CSSMenu_ClientMenu2.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('includes/FlexiMenus2/CSSMenu_AirportsMenuSimple.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('style/jquery.mCustomScrollbar.css') }}">
+
 
     <!-- DW Infographics CSS -->
     <link href="{{ asset('includes/DWInfographics/DWInfographics49.css') }}" rel="stylesheet">
@@ -35,6 +37,7 @@
     <link href="{{ asset('includes/DWInfographics/DWInfographics51.css') }}" rel="stylesheet">
     <link href="{{ asset('includes/DWInfographics/DWInfographics52.css') }}" rel="stylesheet">
     <link href="{{ asset('includes/DWInfographics/font-awesome-4.2.0/css/font-awesome.min.css') }}" rel="stylesheet">
+
 
     <!-- JS Files -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

@@ -41,20 +41,20 @@ jQuery(document).ready(function(){
 });
 </script>
 <script>
-document.addEventListener('DOMContentLoaded', function()
-{
-   //alert('Rajeev');
-   jQuery.ajax({
-    type: "POST",
-    url: '../action.php',
-    data: {name:'<?php echo $user_name?>'},
-    success: function(data)
-    {
-       if(data==1)
-       window.location.href = '../about/userredirect.php';
-    }
-    });
-});
+// document.addEventListener('DOMContentLoaded', function()
+// {
+
+//    jQuery.ajax({
+//     type: "POST",
+//     url: '../action.php',
+//     data: {name:'<?php echo $user_name?>'},
+//     success: function(data)
+//     {
+//        if(data==1)
+//        window.location.href = '../about/userredirect.php';
+//     }
+//     });
+// });
 
 	jQuery('body').on("contextmenu",function(e){
 		//alert('Right click not allowed.');

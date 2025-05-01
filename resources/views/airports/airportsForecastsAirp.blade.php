@@ -314,23 +314,6 @@
                                             @csrf
                                             <input name="export" type="submit" class="whit_btn" id="export" value="Seasonal Pattern" />
                                         </form>
-<!-- 
-                                        <p class="emmahelveticaa15darkgreylight" style="display: inline-block; width: 100%; margin-bottom: 20px;">Historical Trends</p>
-
-                                        <form id="formdown15" name="formdown15" method="post" action="{{ url('csvpages/airportsforecastsair_total.php') }}">
-                                            @csrf
-                                            <input name="export" type="submit" class="whit_btn" id="export" value="Total Forecasts" />
-                                        </form>
-
-                                        <form id="formdown16" name="formdown16" method="post" action="{{ url('csvpages/airportsforecastsair_international.php') }}">
-                                            @csrf
-                                            <input name="export" type="submit" class="whit_btn" id="export" value="International Forecasts" />
-                                        </form>
-
-                                        <form id="formdown17" name="formdown17" method="post" action="{{ url('csvpages/airportsforecastsair_domestic.php') }}">
-                                            @csrf
-                                            <input name="export" type="submit" class="whit_btn" id="export" value="Domestic Forecasts" />
-                                        </form> -->
 
                                     </td>
                                     <td>&nbsp;</td>

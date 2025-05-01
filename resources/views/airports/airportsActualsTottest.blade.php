@@ -158,7 +158,7 @@
                     <td height="10"></td>
                   </tr>
                   <tr>
-                    <td align="center" class="emmahelveticaa16darkgreylight">This update: {{ DateHelper::getUpdateDates()['thisupdate'] }}</td>
+                    <td align="center" class="emmahelveticaa16darkgreylight">This update: {{ DateHelper::getUpdateDates()['thisupdateYr'] }}</td>
                   </tr>
                   <tr>
                     <td align="center" class="emmahelveticaa16darkgreylight">This update: {{ DateHelper::getUpdateDates()['nxtupdateYr'] }}</td>
