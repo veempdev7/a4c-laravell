@@ -5,7 +5,9 @@ use App\Http\Controllers\Auth\LoginAppController;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AuthenticateLoginApp;
 use App\Http\Controllers\Airport\AirportController;
-use App\Http\Controllers\csvpages\CsvpagesController;
+use App\Http\Helpers\DownloadHelper;
+use App\Http\Helpers\airports\AirportHelper;
+
 
 Route::get('/', [LoginAppController::class, 'showLoginForm'])->name('loginapp.show');
 Route::get('index', [LoginAppController::class, 'showLoginForm'])->name('loginapp.show');
@@ -25,7 +27,7 @@ Route::middleware([AuthenticateLoginApp::class])->prefix('airports')->group(func
     Route::get('airport-actual-multi-comparedata', [AirportController::class, 'airportActualMultiCompareData'])->name('airports.actual.multi.comparedata');
     Route::get('airport-forecast-country-multi-comparedata', [AirportController::class, 'airportForecastCountryMultiCompareData'])->name('airports.forecast.country.multi.comparedata');
     Route::get('airport-forecasts-country-multi', [AirportController::class, 'airportForecastsCountryMulti'])->name('airports.forecasts.country.multi');
-    Route::get('airportforecasts-multiselector', [AirportController::class, 'airportForecastsMultiSelector'])->name('airports.forecasts.multiselector');
+    Route::get('airportforecasts_multiselector', [AirportController::class, 'airportForecastsMultiSelector'])->name('airports.airportforecasts_multiselector');
     Route::get('actual-airports', [AirportController::class, 'airportsActualAirports'])->name('airports.actual.airports');
     Route::get('actual-airports-countrymulti', [AirportController::class, 'airportsActualAirportsCountryMulti'])->name('airports.actual.airports.countrymulti');
     Route::get('actual-airports-multi', [AirportController::class, 'airportsActualAirportsMulti'])->name('airports.actual.airports.multi');
@@ -42,14 +44,14 @@ Route::middleware([AuthenticateLoginApp::class])->prefix('airports')->group(func
     Route::get('airportsactualstot', [AirportController::class, 'airportsActualsTottest'])->name('airports.actuals.tottest');
     Route::post('airportsactualstot', [AirportController::class, 'airportsActualsTottest'])->name('airports.actuals.tottest');
     Route::get('actuals-tot-lat', [AirportController::class, 'airportsActualsTotLat'])->name('airports.actuals.tot.lat');
-    Route::get('forecasts', [AirportController::class, 'airportsForecasts'])->name('airports.forecasts');
-    Route::get('forecasts-airp', [AirportController::class, 'airportsForecastsAirp'])->name('airports.forecasts.airp');
+    Route::get('airportsforecasts', [AirportController::class, 'airportsForecasts'])->name('airports.airportsforecasts');
+    Route::post('airportsforecastsairp', [AirportController::class, 'airportsForecastsAirp'])->name('airports.airportsforecastsairp');
     Route::get('forecasts-airpdl', [AirportController::class, 'airportsForecastsAirpdl'])->name('airports.forecasts.airpdl');
-    Route::get('forecasts-city', [AirportController::class, 'airportsForecastsCity'])->name('airports.forecasts.city');
-    Route::get('forecasts-country', [AirportController::class, 'airportsForecastsCountry'])->name('airports.forecasts.country');
+    Route::post('airportsforecastscity', [AirportController::class, 'airportsForecastsCity'])->name('airports.airportsforecastscity');
+    Route::post('airportsforecastscountry', [AirportController::class, 'airportsForecastsCountry'])->name('airports.airportsforecastscountry');
     Route::get('forecasts-countrymulti', [AirportController::class, 'airportsForecastsCountryMulti'])->name('airports.forecasts.countrymulti');
-    Route::get('forecasts-reg', [AirportController::class, 'airportsForecastsReg'])->name('airports.forecasts.reg');
-    Route::get('forecasts-world', [AirportController::class, 'airportsForecastsWorld'])->name('airports.forecasts.world');
+    Route::post('airportsforecastsreg', [AirportController::class, 'airportsForecastsReg'])->name('airports.airportsforecastsreg');
+    Route::post('airportsforecastsworlds', [AirportController::class, 'airportsForecastsWorld'])->name('airports.airportsforecastsworld');
     Route::get('quicksum', [AirportController::class, 'airportsQuickSum'])->name('airports.quicksum');
     Route::get('quicksum-airp-changes', [AirportController::class, 'airportsQuickSumAirpChanges'])->name('airports.quicksum.airp.changes');
     Route::get('quicksum-airport-recent-growth', [AirportController::class, 'airportsQuickSumAirportRecentGrowth'])->name('airports.quicksum.airport.recent.growth');
@@ -60,11 +62,11 @@ Route::middleware([AuthenticateLoginApp::class])->prefix('airports')->group(func
     Route::get('quicktop-airport-by-region', [AirportController::class, 'airportsQuickTopAirportByRegion'])->name('airports.quicktop.airport.by.region');
     Route::get('quicktop-twenty-airport-by-region', [AirportController::class, 'airportsQuickTopTwentyAirportByRegion'])->name('airports.quicktop.twenty.airport.by.region');
     Route::get('alertbox', [AirportController::class, 'alertBox'])->name('airports.alertbox');
-    Route::get('alertbox-all-airport-view', [AirportController::class, 'alertBoxAllAirportView'])->name('airports.alertbox.allairportview');
+    // Route::post('alertboxallairportview', [AirportController::class, 'alertBoxAllAirportView'])->name('airports.alertboxallairportview');
     Route::get('aportlists', [AirportController::class, 'aportLists'])->name('airports.aportlists');
     Route::get('aportlists-airports-actual', [AirportController::class, 'aportListsAirportsActual'])->name('airports.aportlists.airports.actual');
     Route::get('bigdown', [AirportController::class, 'bigDown'])->name('airports.bigdown');
-    Route::get('compare-airports-forecasts', [AirportController::class, 'compareAirportsForecasts'])->name('airports.compare.airports.forecasts');
+    Route::post('compareairports_forecasts', [AirportController::class, 'compareAirportsForecasts'])->name('airports.compareairports_forecasts');
     Route::get('compare-country-forecasts', [AirportController::class, 'compareCountryForecasts'])->name('airports.compare.country.forecasts');
     Route::get('compare-data', [AirportController::class, 'compareData'])->name('airports.compare.data');
     Route::get('compare-region-forecasts', [AirportController::class, 'compareRegionForecasts'])->name('airports.compare.region.forecasts');
@@ -81,10 +83,87 @@ Route::middleware([AuthenticateLoginApp::class])->prefix('airports')->group(func
     Route::get('region-forecasts-multi', [AirportController::class, 'regionForecastsMulti'])->name('airports.region.forecasts.multi');
     Route::get('regionlist', [AirportController::class, 'regionList'])->name('airports.regionlist');
     Route::get('bigdownload-alertbox', [AirportController::class, 'theBigDownloadRestrictionAlertbox'])->name('airports.bigdownload.alertbox');
+    Route::post('search', [AirportController::class, 'search'])->name('airports.search');
+    Route::post('alertboxallairportview', function () {
+        return response(DownloadHelper::checkDownloadLimit());
+    })->name('airports.alertboxallairportview');
+
+    // csv download using helpers
+    Route::post('csvpages/airportsforecastsair1', function () {
+        return AirportHelper::airportsforecastsair1();
+    })->name('airports.csvpages.airportsforecastsair1');
+
+    Route::post('csvpages/airportsforecastsair_singlemonth', function () {
+        return AirportHelper::airportsforecastsair_singlemonth();
+    })->name('airports.csvpages.airportsforecastsair_singlemonth');
+
+    Route::post('csvpages/airportsforecastsair2', function () {
+        return AirportHelper::airportsforecastsair2();
+    })->name('airports.csvpages.airportsforecastsair2');
+
+    Route::post('csvpages/airportsforecastsair_seasonal', function () {
+        return AirportHelper::airportsforecastsair_seasonal();
+    })->name('airports.csvpages.airportsforecastsair_seasonal');
+
+
+    // City
+    Route::post('csvpages/airportsforecastscity_annual', function () {
+        return AirportHelper::airportsforecastscity_annual();
+    })->name('airports.csvpages.airportsforecastscity_annual');
+    
+    Route::post('csvpages/airportsforecastscity_singlemonthly', function () {
+        return AirportHelper::airportsforecastscity_singlemonthly();
+    })->name('airports.csvpages.airportsforecastscity_singlemonthly');
+
+    Route::post('csvpages/airportsforecastscity_quaterly', function () {
+        return AirportHelper::exportCityQuarterlyForecast();
+    })->name('airports.csvpages.airportsforecastscity_quaterly');
+
+    Route::post('csvpages/airportsforecastscountry_annual', function () {
+        return AirportHelper::exportCountryAnnualForecast();
+    })->name('airports.csvpages.airportsforecastscountry_annual');
+
+    Route::post('csvpages/airportsforecastscountry_singlemonthly', function () {
+        return AirportHelper::exportCountryMonthlyForecast();
+    })->name('airports.csvpages.airportsforecastscountry_singlemonthly');
+
+    Route::post('csvpages/airportsforecastscountry_quarterly', function () {
+        return AirportHelper::exportCountryQuarterlyForecast();
+    })->name('airports.csvpages.airportsforecastscountry_quarterly');
+
+    Route::post('csvpages/airportsforecastsreg_annual', function () {
+        return AirportHelper::airportsforecastsreg_annual();
+    })->name('airports.csvpages.airportsforecastsreg_annual');
+
+    Route::post('csvpages/airportsforecastsreg_singlemonthly', function () {
+        return AirportHelper::airportsforecastsreg_singlemonthly();
+    })->name('airports.csvpages.airportsforecastsreg_singlemonthly');
+
+    Route::post('csvpages/airportsforecastsreg_quaterly', function () {
+        return AirportHelper::airportsforecastsreg_quaterly();
+    })->name('airports.csvpages.airportsforecastsreg_quaterly');
+
+
+    Route::post('csvpages/airportsforecastsworld_annual', function () {
+        return AirportHelper::airportsforecastsworld_annual();
+    })->name('airports.csvpages.airportsforecastsworld_annual');
+
+    Route::post('csvpages/airportsforecastsworld_monthly', function () {
+        return AirportHelper::airportsforecastsworld_monthly();
+    })->name('airports.csvpages.airportsforecastsworld_monthly');
+
+
+    Route::post('csvpages/airportsforecastsworld_singlemonthly', function () {
+        return AirportHelper::airportsforecastsworld_singlemonthly();
+    })->name('airports.csvpages.airportsforecastsworld_singlemonthly');
+
+    Route::post('csvpages/airportsforecastsworld_quaterly', function () {
+        return AirportHelper::airportsforecastsworld_quaterly();
+    })->name('airports.csvpages.airportsforecastsworld_quaterly');
+
+
+    
 });
 
-Route::middleware([AuthenticateLoginApp::class])->prefix('csvpages')->group(function () {
-Route::get('airportactuals_lot_csv', [CsvpagesController::class, 'airportactuals_lot_csv'])->name('airportactuals_lot_csv.download');
 
-});
 

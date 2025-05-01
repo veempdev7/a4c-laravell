@@ -1,0 +1,33 @@
+/* ------------------
+ styling for the tables written by emma 
+   ------------------   */
+
+table.table-style-three {
+		width: 370px; 
+		border-collapse: collapse; 
+		border-spacing: 0;
+		}
+ 
+	table.table-style-three td,th {
+		border: 1px solid #FFFFFF; /* No more visible border */
+		height: 20px; 
+		transition: all 0.3s;  /* Simple transition for hover effect */
+	}
+ 
+	table.table-style-three td {
+		background: #FAFAFA;
+		text-align: left;
+	}
+	
+	table.table-style-three tr {
+		background: #5082B2;
+		text-align: left;
+	}
+	
+	table.table-style-three tr:nth-child(odd) td { 
+		background: #F1F1F1; 
+	}   
+
+	table.table-style-three tr:nth-child(even) td { 
+		background: #FEFEFE; 
+	} 

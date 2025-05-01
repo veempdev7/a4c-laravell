@@ -1,0 +1,85 @@
+/* ------------------
+ styling for the tables 
+   ------------------   */
+body
+{
+	line-height: 0.8em;
+}
+#ver-minimalist1
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 10px;
+	margin: 0px;
+	width: 200px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#ver-minimalist1 th
+{
+	padding: 2px 0px;
+	font-weight: normal;
+	font-size: 14px;
+	border-bottom: 2px solid #6678b1;
+	border-right: 30px solid #fff;
+	border-left: 30px solid #fff;
+	color: #039;
+}
+#ver-minimalist1 td
+{
+	padding: 5px 0px 0px 0px;
+	border-right: 30px solid #fff;
+	border-left: 30px solid #fff;
+	color: #669;
+}
+#ver-minimalist2
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 10px;
+	margin: 0px;
+	width: 200px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#ver-minimalist2 th
+{
+	padding: 2px 0px;
+	font-weight: normal;
+	font-size: 14px;
+	border-bottom: 2px solid #6678b1;
+	border-right: 30px solid #fff;
+	border-left: 30px solid #fff;
+	color: #039;
+}
+#ver-minimalist2 td
+{
+	padding: 5px 0px 0px 0px;
+	border-right: 30px solid #fff;
+	border-left: 30px solid #fff;
+	color: #669;
+}
+#ver-minimalist3
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 10px;
+	margin: 0px;
+	width: 200px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#ver-minimalist3 th
+{
+	padding: 2px 0px;
+	font-weight: normal;
+	font-size: 14px;
+	border-bottom: 2px solid #6678b1;
+	border-right: 30px solid #fff;
+	border-left: 30px solid #fff;
+	color: #039;
+}
+#ver-minimalist3 td
+{
+	padding: 5px 0px 0px 0px;
+	border-right: 30px solid #fff;
+	border-left: 30px solid #fff;
+	color: #669;
+}

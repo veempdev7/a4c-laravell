@@ -121,5 +121,67 @@ class CsvHelper
       }
   }, 200, $headers);
 }
+
+public static function generateCsvContent($airportNames, $datasetArray, $output, $output1)
+{
+    fputcsv($output, ['Airport Forecasts Download']);
+    fputcsv($output1, ['Airport Forecasts Download']);
+
+    $curdate = now()->format('m/d/y');
+    fputcsv($output, [$curdate]);
+    fputcsv($output1, [$curdate]);
+
+    fputcsv($output, [implode(',', $airportNames)]);
+    fputcsv($output1, [implode(',', $airportNames)]);
+
+    fputcsv($output, [implode(',', $datasetArray)]);
+    fputcsv($output1, [implode(',', $datasetArray)]);
+
+    fputcsv($output, ["PAX 000"]);
+    fputcsv($output1, ["PAX 000"]);
+
+    foreach ($airportNames as $airportName) {
+        $airportId = DB::connection('db_con_409')->table('lupap')->where('apname', $airportName)->value('id_ap');
+        
+        if (!$airportId) {
+            continue; // Skip invalid airport
+        }
+
+        $forecastData = DB::connection('db_con_409')->table('dlup')
+            ->join('xa_mon', 'xa_mon.dlup', '=', 'dlup.id_dlup')
+            ->whereIn('dlup.dlup_year', $datasetArray)
+            ->where('dlup.id_dlup', '>=', 301)
+            ->where('xa_mon.fc_ident', 1)
+            ->where('xa_mon.ap_id', $airportId)
+            ->select(
+                'dlup.dlup_year AS Year',
+                'dlup.dlup_monthtxt AS Month',
+                'xa_mon.fc3 AS International',
+                'xa_mon.fc4 AS Domestic',
+                'xa_mon.fc5 AS Total',
+                'xa_mon.fc3_change AS Int_change',
+                'xa_mon.fc4_change AS Dom_change',
+                'xa_mon.fc5_change AS Total_change'
+            )
+            ->orderBy('xa_mon.dlup')
+            ->get();
+
+        fputcsv($output, ["\n"]);
+        fputcsv($output1, ["\n"]);
+
+        fputcsv($output, [$airportName]);
+        fputcsv($output1, [$airportName]);
+
+        $headers = ['Year', 'Month', 'International', 'Domestic', 'Total', 'Int_change', 'Dom_change', 'Total_change'];
+        fputcsv($output, $headers);
+        fputcsv($output1, $headers);
+
+        foreach ($forecastData as $row) {
+            $row = (array) $row; // Convert to array
+            fputcsv($output, $row);
+            fputcsv($output1, $row);
+        }
+    }
+}
 }
 

@@ -1,0 +1,16 @@
+.sml_btn {
+    color: #FFFFFF !important;
+    padding: 4px 11px !important;
+    text-decoration: none !important;
+    margin: 20px 10px 5px !important;
+    display: inline-block !important;
+    font-size: 10px !important;
+    background: #335872;
+    border-radius: 2px;
+    box-shadow: 2px 2px 0 #ddd;
+    border: 1px solid #A9C4D2;
+	font-family: Arial, Helvetica, sans-serif !important;
+     position: relative;
+    z-index: 9999;
+}
+.sml_btn_zoom{padding: 6px 15px !important; font-size: 12px !important;}

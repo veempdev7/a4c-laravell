@@ -682,7 +682,3 @@ td#rank_excel a:hover {
 .chartContainer2 .chartStrips li.center:before {
     top: 53%;
 }
-
-.form1 .form_colmn,.form2 .form_colmn,.form3 .form_colmn,.form4 .form_colmn,.form5 .form_colmn,.form6 .form_colmn,.form7 .form_colmn,.form8 .form_colmn,.form9 .form_colmn {
-    width: 24% !important;
-}

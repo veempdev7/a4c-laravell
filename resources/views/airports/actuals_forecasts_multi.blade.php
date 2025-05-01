@@ -84,30 +84,26 @@
 				</div>
 				<div class="pageCompare pageMulti" style="padding-top:0;">
 				  <div class="emmahelveticaa16darkgrey" style="margin-bottom:20px;">SELECT ONE/MORE YEARS:</div>
-                    @php
-              $current_y = date('Y');
+          @php
+            $startYear = date('Y') - 10;
+            $endYear = date('Y') + 15;
           @endphp
-
-          <label class="btn btn-default yearsel">
-              <input type="checkbox" id="{{ $current_y }}" class="check_airport" value="{{ $current_y }}">
-              {{ $current_y }}
-          </label>
-
-          @for($i = 1; $i <= 15; $i++)
+          @for ($year = $startYear; $year <= $endYear; $year++)
               <label class="btn btn-default yearsel">
-                  <input type="checkbox" id="{{ $current_y + $i }}" class="check_airport" value="{{ $current_y + $i }}">
-                  {{ $current_y + $i }}
+                  <input type="checkbox" id="{{ $year }}" class="check_airport" value="{{ $year }}">
+                  {{ $year }}
               </label>
           @endfor
 
           <div class="row">
-              <form id="formdown1" name="formdown1" method="post" action="compareairports_forecasts.php">
-                  <input class="btn_download" id="btnCrtDownload" style="width: 260px;" type="button" value="CREATE DOWNLOAD"  disabled="disabled">
-                  <input type="hidden" id="airportlist" name="airportlist" value="">
-                  <input type="hidden" id="airportlistsendto" name="airportlistsendto" value="">
-                  <input type="hidden" id="dataset" name="dataset" value="">                        
-                  <input type="hidden" name="viewname" id="viewname" value="Airport Forecasts View">
-              </form>
+          <form id="formdown1" name="formdown1" method="post" action="{{ route('airports.compareairports_forecasts') }}">
+						@csrf
+						<input class="btn_download" id="btnCrtDownload" style="width: 260px;" type="button" value="CREATE DOWNLOAD"  disabled="disabled">
+						<input type="hidden" id="airportlist" name="airportlist" value="">
+						<input type="hidden" id="airportlistsendto" name="airportlistsendto" value="">
+						<input type="hidden" id="dataset" name="dataset" value="">										
+						<input type="hidden" name="viewname" id="viewname" value="Airport Forecasts View">
+					</form>
           </div>
 				</div>
 				</td>
@@ -160,201 +156,252 @@
       </td>
     </tr>
   </table>
+  <!-- Modal -->
+<div class="modal fade" id="popUp" tabindex="-1" role="dialog" aria-labelledby="downloadLimitModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Download Limit Reached</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        You have reached the maximum number of downloads allowed for today.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   @endsection
   @section('scripts')
-  <script src="https://www.air4casts.com/air4castapi/air4castapi_latest/amchart/amcharts.js" type="text/javascript"></script>
-  <script src="https://www.air4casts.com/air4castapi/air4castapi_latest/amchart/serial.js" type="text/javascript"></script>
+ 
+  <script type="text/javascript">	
+	$("#btnCrtDownload").on("click", function(e) {
+    var getid = {{ Auth::guard('loginapp')->check() ? Auth::guard('loginapp')->user()?->login_id : 'null' }};
+    var viewid = "Airport Forecasts View";
+    var view_id = 8;
 
-  <script type="text/javascript">
-    var latest_apgraph = <?php echo json_encode($latest_ap_array); ?>;
-
-    var chart1 = AmCharts.makeChart("latestapgraphdiv", {
-      theme: "none",
-      type: "serial",
-      startDuration: 1,
-      dataProvider: latest_apgraph,
-      categoryField: "country",
-      angle: 30,
-      categoryAxis: {
-        labelRotation: 45,
-        color: "#7d8085",
-        fontSize: 12,
-        gridPosition: "start",
-        gridCount: 50,
-        autoGridCount: false,
-        axisThickness: 1,
-        axisColor: "#51585e",
-        gridAlpha: 0
-      },
-      titles: [{
-        text: "% Change on previous Year",
-        size: 12,
-        color: "#7d8085",
-        bold: false,
-      }],
-      valueAxes: [{
-        color: "#7d8085",
-        fontSize: 12,
-        axisThickness: 0,
-        gridColor: "#FFFF",
-        gridAlpha: 0,
-        tickLength: 0,
-        dashLength: 0
-      }],
-      gridAboveGraph: false,
-      graphs: [{
-        valueField: "visits",
-        colorField: "color",
-        type: "column",
-        lineAlpha: 0.1,
-        fillAlphas: 1
-      }],
-      chartCursor: {
-        cursorAlpha: 0,
-        zoomable: false,
-        categoryBalloonEnabled: false
-      },
-      pathToImages: "http://www.amcharts.com/lib/3/images/",
-      amExport: {
-        top: 21,
-        right: 20,
-        exportJPG: true,
-        exportPNG: true,
-        exportSVG: true,
-        exportPDF: true
+    $.ajax({
+        type: "POST",
+        url: "{{ route('airports.alertboxallairportview') }}",
+        data: {
+            data: getid,
+            dataview: viewid,
+            dataview_id: view_id
+        },
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data){
+          if(data != 0 && data >= 5) {
+              $('#popUp').trigger('show'); // <-- Is this popup correctly configured?
+          } else {
+              $('#formdown1').submit();
+          }
       }
     });
+});
 
-    // Second chart initialization
-    var latest_apgraph280 = <?php echo json_encode($latest_apann280_arr); ?>;
+	
+	</script>
+   <script type="text/javascript">
+  $("#search").keyup(function(){
+    var search_keyword_value = $(this).val();
+    if(search_keyword_value != ''){
+      $.ajax({
+        type: "POST",
+        url: "{{ route('airports.search') }}",
+        data: 'keyword=' + $(this).val(),
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+        beforeSend: function(){
+          $("#search").css("background","#FFF");
+        },
+        success: function(data){
+          $("#suggesstion-box").show();
+          $("#suggesstion-box").html(data);
+          $("#search").css("background","#FFF");
+        }
+      });
+    } else {
+      $("#suggesstion-box").hide();
+    }
+  });
 
-    var chart2 = AmCharts.makeChart("latestapgraphdiv280", {
-      theme: "none",
-      type: "serial",
-      startDuration: 1,
-      dataProvider: latest_apgraph280,
-      autoMargins: false,
-      marginLeft: 40,
-      marginBottom: 30,
-      marginRight: 0,
-      marginTop: 0,
-      categoryField: "country",
-      angle: 30,
-      categoryAxis: {
-        labelRotation: 45,
-        color: "#7d8085",
-        fontSize: 12,
-        gridPosition: "start",
-        gridCount: 50,
-        autoGridCount: false,
-        axisThickness: 1,
-        axisColor: "#51585e",
-        gridAlpha: 0
-      },
-      titles: [{
-        text: "000 pax",
-        size: 12,
-        color: "#7d8085",
-        bold: false,
-      }],
-      valueAxes: [{
-        color: "#7d8085",
-        fontSize: 12,
-        axisThickness: 0,
-        gridColor: "#FFFF",
-        gridAlpha: 0,
-        tickLength: 0,
-        dashLength: 0
-      }],
-      gridAboveGraph: false,
-      graphs: [{
-        valueField: "visits",
-        colorField: "color",
-        type: "column",
-        lineAlpha: 0.1,
-        fillAlphas: 1
-      }],
-      chartCursor: {
-        cursorAlpha: 0,
-        zoomable: false,
-        categoryBalloonEnabled: false
-      },
-      pathToImages: "http://www.amcharts.com/lib/3/images/",
-      amExport: {
-        top: 21,
-        right: 20,
-        exportJPG: true,
-        exportPNG: true,
-        exportSVG: true,
-        exportPDF: true
-      }
-    });
+  $(document).on('click','label.btn [type="checkbox"]', function(){
+    $(this).parent().toggleClass('active');
+  });
+</script>
+<script type="text/javascript">
+$( document ).ready(function() {
+   enableDownload();
+});
 
-    //Third chart initialization
+    var str_assign="";
+	var arr=[];
+	var str_hidden="";
+	    function enableDownload(){  
+        if(dataarr.length >0 && arr.length >0){
+            $('#btnCrtDownload').prop('disabled', false);
+        }else{
+            $('#btnCrtDownload').prop('disabled', true);            
+        }
+    }
+	
+	function selectAirport(val) {
+			 $("#search").val(val);
+		     $("#suggesstion-box").hide();
+	 		 if(arr.indexOf(val) == -1 )
+			 {
+				arr.push(val);
+				$('#selectedlist').append("<li>"+val+"<span><i class='fa fa-close'></i></span></li>");
+			 }	
+			
+			str_assign="'"+arr[0]+"'";				
+			for(i=1;i<arr.length;i++)		
+            {
+                str_assign = str_assign+','+"'"+arr[i]+"'";
+            }
+		    $('#airportlist').val(str_assign);
+			$("#search").val('');
+			$("#suggesstion-box").hide();
+            enableDownload();
+		}
 
-    var chartapann280 = <?php echo json_encode($latest_apgraphline_arr); ?>;
+	
+	
 
-    var chart3 = AmCharts.makeChart("chartdivairportsactualstot", {
-      theme: "none",
-      type: "serial",
-      startDuration: 1,
-      dataProvider: chartapann280,
-      categoryField: "country",
-      angle: 30,
-      categoryAxis: {
-        labelRotation: 45,
-        color: "#7d8085",
-        fontSize: 12,
-        gridPosition: "start",
-        gridCount: 50,
-        autoGridCount: false,
-        axisThickness: 1,
-        axisColor: "#51585e",
-        gridAlpha: 0
-      },
-      titles: [{
-        text: "000 pax",
-        size: 12,
-        color: "#7d8085",
-        bold: false,
-      }],
+$(document).on('click','#airport_list option', function(){
+			var val = $(this).val();        // whole text			
+			var valtxt = $(this).text();
+			
+			var text_slct_combo=val.split(';');
+			var text_slct=text_slct_combo[1].trim();
+			
+			if(arr.indexOf(valtxt) == -1)
+             {
+				 if ( $('#menu ul li').size() <= 9 && $('#menu ul li').size() >= 0) 
+					{
+					   if(arr.indexOf(valtxt) != -1)
+						{
+							var indx = arr.indexOf(valtxt);
+							arr.splice(indx,1);
+						}
+						else 
+						{
+							$('#selectedlist').append("<li>"+valtxt+"<span><i class='fa fa-close'></i></span></li>");
+							arr.push(valtxt);
+							$('#nmbr').text($('#menu ul li').size() );
+							enableDownload();
+						}
+							str_assign="'"+arr[0]+"'";
+							for(i=1;i<arr.length;i++)		
+							{
+								str_assign = str_assign+','+"'"+arr[i]+"'";
+							}
+							//alert("string"+str_assign);   // only jracode
+							$('#airportlist').val(str_assign);
+							//console.log($('#airportlist').val()); 
+					}
+					else{
+						//alert("Please select up to 10 airports");
+						$("#btn_trigger").trigger("click");
+					} 
+		     }
+			 else{
+				 alert("Allready Exists");
+			 }
+			
+});
+
+	
+	  	$(document).on("click", "#aport-list li", function(){
+		   if ( $('#menu ul li').size() <= 9 && $('#menu ul li').size() >= 0) 
+           {
+				 var valueList = $(this).text().trim();
+				 if($(this).hasClass('active') != true)
+				  {
+					  //alert(valueList) ;
+					  selectAirport(valueList);
+					  $(this).addClass('active');
+				  }
+				$("#search").val('');
+				$('#nmbr').text($('#menu ul li').size() );
+				enableDownload();
+		   }else{
+				alert("You select only 10 Airports");
+               }   
+           		   
+        });	
+	
+	
+	
+	  	$(document).on("click","#selectedlist li", function () {
+		var textaport= $(this).text();
+		
+		for(i=0;i<arr.length;i++)
+		{
+			if(textaport == arr[i])
+			{
+				arr.splice(i,1);
+			}
+		}
+		str_assign="'"+arr[0]+"'";
+		for(i=1;i<arr.length;i++)		
+		{
+			str_assign = str_assign+','+"'"+arr[i]+"'";
+		}
+		//alert(str_assign);
+		$('#airportlist').val(str_assign);
+		$(this).closest("li").remove(); 
+		$('#nmbr').text($('#menu ul li').size() );
+        enableDownload();
+		
+	}); 
+	
+</script>
 
 
 
-      valueAxes: [{
-        //title: "Visitors",
-        color: "#7d8085",
-        fontSize: 12,
-        axisThickness: 0,
-        gridColor: "#FFFF",
-        gridAlpha: 0,
-        tickLength: 0,
-        dashLength: 0
-      }],
-      gridAboveGraph: false,
-      graphs: [{
-        valueField: "visits",
-        colorField: "color",
-        type: "column",
-        lineAlpha: 0.1,
-        fillAlphas: 1
-      }],
 
+<script>
+    var str_hidden_aport = '';
+    var counter_aport = 0;
+	var dataarr=[];
+	var datastr_assign="";
+    $(document).on("click",".check_airport", function () {
+        counter_aport = counter_aport + 1;
+        var text_slct_aport=$(this).val();
 
-      chartCursor: {
-        cursorAlpha: 0,
-        zoomable: false,
-        categoryBalloonEnabled: false
-      },
-      pathToImages: "http://www.amcharts.com/lib/3/images/",
-      amExport: {
-        top: 21,
-        right: 20,
-        exportJPG: true,
-        exportPNG: true,
-        exportSVG: true,
-        exportPDF: true
-      }
-    });
-  </script>
+        //alert(text_slct_aport);
+
+        if(dataarr.indexOf(text_slct_aport) != -1)
+        {
+            //alert("exists");
+            var indx = dataarr.indexOf(text_slct_aport);
+            dataarr.splice(indx,1);
+        }
+        else /* if(dataarr.indexOf(text_slct_aport) === -1) */
+        {
+            //alert("Fresh values" + text_slct_aport);
+            dataarr.push(text_slct_aport);
+        }
+         //alert(dataarr);
+        datastr_assign=dataarr[0];
+        for(i=1;i<dataarr.length;i++)		
+        {
+            datastr_assign = datastr_assign+', '+dataarr[i];
+        }
+        $('#dataset').val(datastr_assign); 
+        
+        enableDownload();
+		   
+    }); 
+</script>
   @endsection
+ 

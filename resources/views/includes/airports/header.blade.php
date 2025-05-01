@@ -56,10 +56,10 @@
                             </li>
                             <li> <a href="#" target="_self"><span class="branch">Recovery Forecasts <i class="fa fa-angle-down"></i></span></a>
                               <ul>
-                                <li> <a href="airportsforecasts.php" target="_self">
+                                <li> <a href="{{ route('airports.airportsforecasts') }}" target="_self">
                                     <font class="leaf">One at a Time</font>
                                   </a></li>
-                                <li> <a href="airportforecasts_multiselector.php" target="_self">
+                                <li> <a href="{{ route('airports.airportforecasts_multiselector') }}" target="_self">
                                     <font class="leaf">Multi-Selectors</font>
                                   </a></li>
                               </ul>

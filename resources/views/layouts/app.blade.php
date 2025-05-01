@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Air4casts Online Login')</title>
 
     <!-- Bootstrap CSS from CDN -->
@@ -40,6 +41,14 @@
 
     <!-- Bootstrap JS from CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Bootstrap CSS -->
+<link href="{{ asset('style/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+
+<!-- Bootstrap JS from CDN -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
     <!-- Custom JS files -->
     <script src="{{ asset('js/custom.js') }}"></script>
